@@ -1,3 +1,4 @@
+import Expense from "../models/Expense.js"
 // for all expenses
 
 export const getExpenses=(req,res,next)=>{

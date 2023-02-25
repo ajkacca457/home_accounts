@@ -1,3 +1,5 @@
+import Income from "../models/Income.js"
+
 // for all incomes
 
 export const getIncomes=(req,res,next)=>{
