@@ -1,6 +1,8 @@
 import  express  from "express";
 import dotenv from "dotenv";
 import ConnectDB from "./env/db.js";
+import AuthRoutes from "./routes/authRoutes.js"
+import IncomeRoutes from "./routes/incomeRoutes.js";
 import ExpenseRoutes from "./routes/expenseRoutes.js"
 
 dotenv.config({
@@ -9,6 +11,10 @@ dotenv.config({
 
 const app= express();
 
+app.use(express.json());
+
+app.use("/api/v1/auth",AuthRoutes);
+app.use("/api/v1/incomes",IncomeRoutes);
 app.use("/api/v1/expenses", ExpenseRoutes);
 
 
