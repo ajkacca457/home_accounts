@@ -3,7 +3,8 @@ import { getIncomes,getSingleIncome,getIncomeStats,createIncome,updateIncome,del
 const router= express();
 
 router.route("/").get(getIncomes).post(createIncome);
-router.route("/stats").get(getIncomeStats);
+//order of the routes matters. If it comes after :id route it will not work
+router.route("/income-stats").get(getIncomeStats);
 router.route("/:id").get(getSingleIncome).patch(updateIncome).delete(deleteIncome);
 
 

@@ -8,7 +8,7 @@ export const getExpenses=(req,res,next)=>{
 
 // for expense statistics
 
-export const getStats=(req,res,next)=>{
+export const getExpenseStats=(req,res,next)=>{
     res.status(200).json({
         message:"will return stats of all expenses"
     })
