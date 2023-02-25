@@ -1,5 +1,6 @@
 import  express  from "express";
 import dotenv from "dotenv";
+import ConnectDB from "./env/db.js";
 
 dotenv.config({
    path: "./env/config.env"
@@ -12,6 +13,8 @@ app.get("/",(req,res)=>{
         message:"hello"
     })
 })
+
+ConnectDB();
 
 const PORT= process.env.PORT || 5000;
 
