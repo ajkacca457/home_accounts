@@ -1,3 +1,4 @@
+import User from "../models/User.js"
 // for login
 
 export const loginUser=(req,res,next)=>{
