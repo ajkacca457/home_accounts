@@ -1,6 +1,7 @@
 import  express  from "express";
 import dotenv from "dotenv";
 import ConnectDB from "./env/db.js";
+import ExpenseRoutes from "./routes/expenseRoutes.js"
 
 dotenv.config({
    path: "./env/config.env"
@@ -8,11 +9,7 @@ dotenv.config({
 
 const app= express();
 
-app.get("/",(req,res)=>{
-    res.status(200).json({
-        message:"hello"
-    })
-})
+app.use("/api/v1/expenses", ExpenseRoutes);
 
 
 
