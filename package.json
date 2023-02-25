@@ -1,0 +1,20 @@
+{
+  "name": "home_accounts",
+  "version": "1.0.0",
+  "description": "Web app for home accounts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajkacca457/home_accounts.git"
+  },
+  "author": "Avijit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajkacca457/home_accounts/issues"
+  },
+  "homepage": "https://github.com/ajkacca457/home_accounts#readme"
+}
