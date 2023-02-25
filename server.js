@@ -14,13 +14,22 @@ app.get("/",(req,res)=>{
     })
 })
 
-ConnectDB();
+
 
 const PORT= process.env.PORT || 5000;
 
-app.listen(PORT,()=>{
-    console.log(`server is running! ${process.env.PORT}`);
-});
+const ServerStart=async()=>{
+    try {
+        const conn= await ConnectDB();
+        app.listen(PORT,()=>{
+            console.log(`Server is connected to ${conn.connection.host}`);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+ServerStart();
 
 
 
