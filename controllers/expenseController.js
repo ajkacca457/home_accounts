@@ -16,7 +16,7 @@ export const getExpenseStats=(req,res,next)=>{
 }
 
 //for single expense 
-export const getSingleExpense=(req,res,next)=>{
+ export const getSingleExpense=(req,res,next)=>{
     res.status(200).json({
         message:"will get a single expense"
     })

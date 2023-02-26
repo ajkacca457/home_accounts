@@ -5,6 +5,7 @@ import AuthRoutes from "./routes/authRoutes.js"
 import IncomeRoutes from "./routes/incomeRoutes.js";
 import ExpenseRoutes from "./routes/expenseRoutes.js"
 import NotFound from "./middlewares/NotFound.js";
+import ErrorHandler from "./middlewares/ErrorHandler.js";
 
 dotenv.config({
    path: "./env/config.env"
@@ -19,6 +20,7 @@ app.use("/api/v1/incomes",IncomeRoutes);
 app.use("/api/v1/expenses", ExpenseRoutes);
 
 app.use(NotFound);
+app.use(ErrorHandler);
 
 const PORT= process.env.PORT || 5000;
 
