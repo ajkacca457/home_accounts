@@ -76,7 +76,11 @@ export const updateIncome=AsyncHandler(async (req,res,next)=>{
 
 //  for deleting single income 
 export const deleteIncome=AsyncHandler(async (req,res,next)=>{
+    const income= await Income.findByIdAndDelete(req.params.id);
+    if(!income) {
+        return next(new CustomError(`${req.params.id} transaction cant be deleted`,StatusCodes.BAD_REQUEST))
+    }
     res.status(200).json({
-        message:"will delete single income"
+        message:`${req.params.id} transaction deleted` 
     })
 })
