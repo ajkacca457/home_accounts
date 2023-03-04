@@ -9,13 +9,15 @@ const ErrorHandler=(err,req,res,next)=>{
     // to catch the error message coming from next(not from asynchandler)
     error.message=err.message;
 
-
     if(error.name==="ValidationError") {
         let message= Object.values(error.errors).map(item=>item.message).join(",");
         error= new CustomError(message,StatusCodes.BAD_REQUEST)
     }
 
-
+    if(error.name==="CastError") {
+        let message= `Transaction with ID ${error.value} doesnt exists`;
+        error= new CustomError(message,StatusCodes.NOT_FOUND);
+    }
 
 res.status(error.StatusCodes||500).json({
     message:error.message

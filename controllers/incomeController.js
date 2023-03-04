@@ -6,8 +6,12 @@ import { StatusCodes } from 'http-status-codes';
 // for all incomes
 
 export const getIncomes=AsyncHandler(async (req,res,next)=>{
+    const incomes= await Income.find();
+    if(!incomes) {
+        return next(new CustomError("Transactions are not available", StatusCodes.NOT_FOUND))
+    }
     res.status(StatusCodes.OK).json({
-        message:"will return all the income"
+        data:incomes
     })
 })
 
@@ -21,8 +25,17 @@ export const getIncomeStats=AsyncHandler(async (req,res,next)=>{
 
 //for single income 
 export const getSingleIncome=AsyncHandler(async (req,res,next)=>{
+    console.log(req.params);
+    const {id}= req.params;
+
+    const income= await Income.findById(id);
+
+    if(!income) {
+        return next( new CustomError(`Transaction with ID ${id} doesnt exists`, StatusCodes.NOT_FOUND));
+    }
+
     res.status(200).json({
-        message:"will get a single income"
+        data:income
     })
 })
 
