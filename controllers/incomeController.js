@@ -59,8 +59,18 @@ export const createIncome=AsyncHandler(async (req,res,next)=>{
 
 //  for updating single income 
 export const updateIncome=AsyncHandler(async (req,res,next)=>{
+    const income= await Income.findByIdAndUpdate(req.params.id, req.body, {
+        new:true,
+        runValidators:true
+    })
+
+    if(!income) {
+        return next(new CustomError(`${req.params.id} transaction cant be updated`,StatusCodes.BAD_REQUEST))
+    }
+
     res.status(200).json({
-        message:"will update single income"
+        data:income,
+        message:"Transaction updated succesfully"
     })
 })
 
