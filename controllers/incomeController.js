@@ -28,7 +28,6 @@ export const getSingleIncome=AsyncHandler(async (req,res,next)=>{
 
 //  for create single income 
 export const createIncome=AsyncHandler(async (req,res,next)=>{
-    console.log(req.body);
     const {title,information,amount,category}= req.body;
 
     const income= await Income.create({
