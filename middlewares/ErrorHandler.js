@@ -14,6 +14,8 @@ const ErrorHandler=(err,req,res,next)=>{
         error= new CustomError(message,StatusCodes.BAD_REQUEST)
     }
 
+    // error.value catches the value from next(error)
+
     if(error.name==="CastError") {
         let message= `Transaction with ID ${error.value} doesnt exists`;
         error= new CustomError(message,StatusCodes.NOT_FOUND);
