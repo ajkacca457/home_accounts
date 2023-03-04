@@ -1,10 +1,12 @@
 import Income from "../models/Income.js";
 import AsyncHandler from "../middlewares/AsyncHandler.js";
+import CustomError from "../utils/CustomError.js";
+import { StatusCodes } from 'http-status-codes';
 
 // for all incomes
 
 export const getIncomes=AsyncHandler(async (req,res,next)=>{
-    res.status(200).json({
+    res.status(StatusCodes.OK).json({
         message:"will return all the income"
     })
 })
@@ -27,8 +29,18 @@ export const getSingleIncome=AsyncHandler(async (req,res,next)=>{
 //  for create single income 
 export const createIncome=AsyncHandler(async (req,res,next)=>{
     console.log(req.body);
-    res.status(200).json({
-        message:"will create single income"
+    const {title,information,amount,category}= req.body;
+
+    const income= await Income.create({
+        title,information,amount,category
+    });
+
+    if(!income) {
+        return next(CustomError("Income cant be created", StatusCodes.BAD_REQUEST))
+    }
+
+    res.status(StatusCodes.CREATED).json({
+        data: income
     })
 })
 

@@ -11,7 +11,7 @@ const IncomeSchema= new mongoose.Schema({
         type:String,
         require:[true,"transaction information is required"],
         minLength:[10,"information cant be shorter than 10 charachter"],
-        maxLength:[10,"information cant be shorter than 100 charachter"],
+        maxLength:[100,"information cant be longer than 100 charachter"],
     },
     amount: {
         type:Number,
