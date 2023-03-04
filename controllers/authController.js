@@ -1,18 +1,19 @@
 import User from "../models/User.js"
+import AsyncHandler from "../middlewares/AsyncHandler.js"
 // for login
 
-export const loginUser=(req,res,next)=>{
+export const loginUser=AsyncHandler((req,res,next)=>{
     res.status(200).json({
         message:"will send token for login"
     })
-}
+})
 
 // for register
 
-export const registerUser=(req,res,next)=>{
+export const registerUser=AsyncHandler((req,res,next)=>{
     res.status(200).json({
         message:"will create user and will send token"
     })
-}
+})
 
 
