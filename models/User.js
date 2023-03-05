@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
 
 const UserSchema= new mongoose.Schema({
     firstname:{
@@ -44,6 +45,11 @@ const UserSchema= new mongoose.Schema({
         default:Date.now
     }
 
+})
+
+UserSchema.pre("save",async function(){
+const salt= await bcrypt.genSalt(10);
+this.password= await bcrypt.hash(this.password,salt);
 })
 
 

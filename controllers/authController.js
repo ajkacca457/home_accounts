@@ -4,7 +4,7 @@ import CustomError from "../utils/CustomError.js"
 import { StatusCodes } from "http-status-codes"
 // for login
 
-export const loginUser=AsyncHandler((req,res,next)=>{
+export const loginUser=AsyncHandler(async (req,res,next)=>{
     res.status(200).json({
         message:"will send token for login"
     })
