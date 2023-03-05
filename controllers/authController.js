@@ -1,5 +1,7 @@
 import User from "../models/User.js"
 import AsyncHandler from "../middlewares/AsyncHandler.js"
+import CustomError from "../utils/CustomError.js"
+import { StatusCodes } from "http-status-codes"
 // for login
 
 export const loginUser=AsyncHandler((req,res,next)=>{
@@ -10,9 +12,19 @@ export const loginUser=AsyncHandler((req,res,next)=>{
 
 // for register
 
-export const registerUser=AsyncHandler((req,res,next)=>{
+export const registerUser=AsyncHandler(async (req,res,next)=>{
+    const {firstname,lastname,email,password}=req.body;
+    const user= await User.create({
+        firstname,lastname,email,password
+    });
+
+    if(!user) {
+        return next(new CustomError("User cant be created",StatusCodes.BAD_REQUEST));
+    }
+
     res.status(200).json({
-        message:"will create user and will send token"
+        data:user,
+        message:"New user created"
     })
 })
 
