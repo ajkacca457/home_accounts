@@ -25,7 +25,7 @@ export const registerUser=AsyncHandler(async (req,res,next)=>{
     let token= user.getToken();
 
     res.status(200).json({
-        data:user,
+        user:{id:user._id, firstname:user.firstname, lastname:user.lastname, email:user.email, createdAt:user.createdAt},
         token:token,
         message:"New user created"
     })
