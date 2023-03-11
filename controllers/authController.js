@@ -22,10 +22,11 @@ export const registerUser=AsyncHandler(async (req,res,next)=>{
         return next(new CustomError("User cant be created",StatusCodes.BAD_REQUEST));
     }
 
-    user.getToken();
+    let token= user.getToken();
 
     res.status(200).json({
         data:user,
+        token:token,
         message:"New user created"
     })
 })

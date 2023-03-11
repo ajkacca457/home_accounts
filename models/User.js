@@ -55,7 +55,7 @@ this.password= await bcrypt.hash(this.password,salt);
 })
 
 UserSchema.methods.getToken= function() {
-    console.log(this);
+    return jwt.sign({userId:this._id}, process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRE});
 }
 
 
