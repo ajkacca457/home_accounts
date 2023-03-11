@@ -1,6 +1,5 @@
 import express from "express";
 import { getExpenses, getSingleExpense,getExpenseStats,createExpense,updateExpense,deleteExpense } from "../controllers/expenseController.js";
-import protectRoute from "../middlewares/protectRoute.js";
 
 
 const router= express();
