@@ -2,7 +2,6 @@ import AsyncHandler from "./AsyncHandler.js";
 import CustomError from "../utils/CustomError.js";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
 
 const protectRoute=AsyncHandler(async(req,res,next)=>{
     let token;
