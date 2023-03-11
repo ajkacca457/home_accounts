@@ -22,6 +22,12 @@ const IncomeSchema= new mongoose.Schema({
     required:[true, "category is required"],
     enum: ["Salary","Profit", "Investment", "Interest", "Other"]
     },
+    createdBy: {
+        type:mongoose.Types.ObjectId,
+        ref:"User",
+        required:[true, "user is required for transaction"]
+        
+    },
     createdAt:{
         type:Date,
         default:Date.now

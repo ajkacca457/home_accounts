@@ -21,6 +21,8 @@ const ErrorHandler=(err,req,res,next)=>{
         error= new CustomError(message,StatusCodes.NOT_FOUND);
     }
 
+    
+
 res.status(error.StatusCodes||500).json({
     message:error.message
 })

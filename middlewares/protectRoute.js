@@ -16,7 +16,7 @@ const protectRoute=AsyncHandler(async(req,res,next)=>{
 
     try {
         const decodedId= jwt.verify(token,process.env.JWT_SECRET);
-        req.user= {userId:decodedId};
+        req.user= {userId:decodedId.userId};
         next();
     } catch (error) {
         return next(new CustomError(error.message,StatusCodes.UNAUTHORIZED))

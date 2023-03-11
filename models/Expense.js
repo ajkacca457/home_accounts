@@ -29,6 +29,12 @@ const ExpenseSchema= new mongoose.Schema({
         enum:["paid","due"]
     },
 
+    createdBy: {
+        type:mongoose.Types.ObjectId,
+        ref:"User",
+        required:[true, "user is required for transaction"]
+        
+    },
     createdAt:{
         type:Date,
         default:Date.now

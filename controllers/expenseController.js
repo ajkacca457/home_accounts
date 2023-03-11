@@ -40,9 +40,9 @@ export const getSingleExpense=AsyncHandler(async (req,res,next)=>{
 //  for create single expense 
 export const createExpense=AsyncHandler(async (req,res,next)=>{
     const {title,information,amount,category,status}= req.body;
-
+    const createdBy= req.user.userId;    
     const expense= await Expense.create({
-        title,information,amount,category,status
+        title,information,amount,category,status,createdBy
     });
 
     if(!expense) {
