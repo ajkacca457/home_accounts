@@ -68,3 +68,37 @@ export const registerUser=AsyncHandler(async (req,res,next)=>{
 })
 
 
+//update user route
+export const updateUser= AsyncHandler(async (req,res,next)=>{
+
+    const {firstname,lastname,email,location}= req.body;
+
+    if(!firstname||!lastname||!email||!location) {
+        return next(new CustomError("please provide all the fields", StatusCodes.BAD_REQUEST));
+    }
+
+    // doesnt run password hash middleware in case of findByIdAndUpdate
+    
+    // const user= await User.findByIdAndUpdate(req.user.userId,{firstname,lastname,email,location}, {
+    //     runValidators:true
+    // } )
+
+
+    const user=await User.findOne({_id:req.user.userId});
+
+    user.firstname= firstname;
+    user.lastname=lastname;
+    user.email= email;
+    user.location=location;
+
+    await user.save();
+
+    const token= user.getToken();
+
+    res.status(200).json({
+        message:"user details updated",
+        token:token,
+        user:user
+    })  
+
+})
