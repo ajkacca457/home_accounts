@@ -23,6 +23,12 @@ const ExpenseSchema= new mongoose.Schema({
     required:[true, "category is required"],
     enum: ["Groceries","Rent", "Insurance", "Entertainment", "Education","Health","Miscellaneous"]
     },
+    status: {
+        type:String,
+        required:[true,"status is required"],
+        enum:["paid","due"]
+    },
+
     createdAt:{
         type:Date,
         default:Date.now
