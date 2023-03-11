@@ -5,7 +5,7 @@ import protectRoute from "../middlewares/protectRoute.js";
 
 const router= express();
 
-router.route("/").get(getExpenses).post(protectRoute,createExpense);
+router.route("/").get(protectRoute,getExpenses).post(protectRoute,createExpense);
 router.route("/expense-stats").get(getExpenseStats);
 router.route("/:id").get(getSingleExpense).patch(updateExpense).delete(deleteExpense);
 
