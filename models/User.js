@@ -55,8 +55,18 @@ const salt= await bcrypt.genSalt(10);
 this.password= await bcrypt.hash(this.password,salt);
 })
 
+
+//method for generating token 
+
 UserSchema.methods.getToken= function() {
     return jwt.sign({userId:this._id}, process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRE});
+}
+
+
+// methods for checking password bcrypt
+UserSchema.methods.passwordCheck=async function(userpassword) {
+    const isMatch= await bcrypt.compare(userpassword, this.password);
+    return isMatch;
 }
 
 
