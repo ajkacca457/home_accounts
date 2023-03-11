@@ -1,5 +1,6 @@
 import express from "express";
 import { getIncomes,getSingleIncome,getIncomeStats,createIncome,updateIncome,deleteIncome } from "../controllers/incomeController.js";
+import protectRoute from "../middlewares/protectRoute.js";
 const router= express();
 
 router.route("/").get(getIncomes).post(createIncome);
