@@ -6,7 +6,26 @@ import { StatusCodes } from 'http-status-codes';
 // for all incomes
 
 export const getIncomes=AsyncHandler(async (req,res,next)=>{
-    const incomes= await Income.find();
+    let query;
+    // copying req.query to keep the origin query intact(that is a best practice)
+    const reqQuery={...req.query};
+
+    const ToDelete= ["select","sort"];
+
+    ToDelete.forEach((item)=> {
+        delete reqQuery[item];
+    })
+
+    let QueryStr= JSON.stringify(reqQuery);
+
+    QueryStr= QueryStr.replace(/\b(gt|lt|gte|lte|in)\b/, (match)=> {
+        return `$${match}`
+    })
+
+    query= Income.find(JSON.parse(QueryStr));
+
+    const incomes= await query;
+    
     if(!incomes) {
         return next(new CustomError("Transactions are not available", StatusCodes.NOT_FOUND))
     }
