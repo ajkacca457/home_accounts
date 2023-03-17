@@ -36,8 +36,13 @@ export const getIncomes=AsyncHandler(async (req,res,next)=>{
         query=query.sort("-createdAt");
     }
 
+    let page=Number(req.query.page) || 1;
+    let limit= Number(req.query.limit) || 10;   
+    let skip= (page-1)*limit;
 
+    query= query.skip(skip).limit(limit);
     const incomes= await query;
+
     
     if(!incomes) {
         return next(new CustomError("Transactions are not available", StatusCodes.NOT_FOUND))
