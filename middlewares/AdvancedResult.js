@@ -15,7 +15,9 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
         return `$${match}`
     })
 
-    query= model.find(JSON.parse(QueryStr));
+    let finalQuery= {...JSON.parse(QueryStr),createdBy:req.user.userId};
+
+    query= model.find(finalQuery);
 
     if(req.query.select) {
         const selectFields= req.query.select.split(",").join(" ");
@@ -37,7 +39,7 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
 
     const items= await query;
 
-    let totalItems=await model.countDocuments();
+    let totalItems=await model.countDocuments({createdBy:req.user.userId});
     let numberOfPages= Math.ceil(totalItems/limit);
 
     
