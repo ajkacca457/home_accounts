@@ -42,15 +42,19 @@ export const getIncomes=AsyncHandler(async (req,res,next)=>{
 
     query= query.skip(skip).limit(limit);
 
+    const incomes= await query;
 
-     const incomes= await query;
+    let totalItems=await Income.countDocuments();
+    let numberOfPages= Math.ceil(totalItems/limit);
 
     
     if(!incomes) {
         return next(new CustomError("Transactions are not available", StatusCodes.NOT_FOUND))
     }
     res.status(StatusCodes.OK).json({
-        data:incomes
+        data:incomes,
+        totalItems,
+        numberOfPages
     })
 })
 
