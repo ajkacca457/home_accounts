@@ -5,14 +5,7 @@ import { StatusCodes } from "http-status-codes";
 // for all expenses
 
 export const getExpenses=AsyncHandler(async (req,res,next)=>{
-    const createdBy= req.user.userId;
-    const expenses= await Expense.find({...req.query,createdBy});
-    if(!expenses) {
-        return next(new CustomError("Transactions are not available", StatusCodes.NOT_FOUND))
-    }
-    res.status(StatusCodes.OK).json({
-        data:expenses
-    })
+    res.status(StatusCodes.OK).json(res.advancedResult);
 })
 
 // for expense statistics
