@@ -24,6 +24,19 @@ export const getIncomes=AsyncHandler(async (req,res,next)=>{
 
     query= Income.find(JSON.parse(QueryStr));
 
+    if(req.query.select) {
+        const selectFields= req.query.select.split(",").join(" ");
+        query= query.select(selectFields);
+    }
+
+    if(req.query.sort) {
+        const sortFields= req.query.sort.split(",").join(" ");
+        query=query.sort(sortFields);
+    } else {
+        query=query.sort("-createdAt");
+    }
+
+
     const incomes= await query;
     
     if(!incomes) {
