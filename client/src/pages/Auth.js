@@ -19,6 +19,10 @@ const handleChange=(e)=>{
     setValues({...values,[e.target.name]:e.target.value})
 }
 
+const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(values);
+}
 
 const toggleForm=(e)=>{
     e.preventDefault();
@@ -26,9 +30,9 @@ const toggleForm=(e)=>{
 }
 
   return (
-        <div class="w-3/6 mx-auto">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div class="mb-6 w-full">
+        <div className="w-3/6 mx-auto">
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                <div className="mb-6 w-full">
                     <img src={AccountLogo} alt="logo" className='w-[300px] h-[60px]'/>
                 </div>
 
@@ -38,8 +42,8 @@ const toggleForm=(e)=>{
                 <FormRow type="email" name="email" value={values.email} labelText="Email" placeholderText="Enter email address" handleChange={handleChange}/>
                 <FormRow type="password" name="password" value={values.password} labelText="Password" placeholderText="Enter password" handleChange={handleChange}/>
     
-                <div class="flex items-center justify-between">
-                    <button class="btn-primary" type="button">
+                <div className="flex items-center justify-between">
+                    <button className="btn-primary" type="submit">
                         {!values.isRegistered?"Submit":"Sign In"}
                     </button>
                 </div>
