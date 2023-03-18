@@ -1,5 +1,7 @@
 import React from 'react'
 import AccountLogo from "../assets/account_logo.svg";
+import SectionCard from '../components/SectionCard';
+import { cardDetails } from '../utilites/cardData';
 
 const Home = () => {
   return (
@@ -8,7 +10,7 @@ const Home = () => {
             <img src={AccountLogo} alt="logo" className='w-[300px] h-[60px]'/>
             <button className='btn-primary'>Login/Register</button>
         </div>
-
+        <SectionCard {...cardDetails}/>
     </div>
   )
 }
