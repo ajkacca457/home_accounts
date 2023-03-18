@@ -10,7 +10,10 @@ const Home = () => {
             <img src={AccountLogo} alt="logo" className='w-[300px] h-[60px]'/>
             <button className='btn-primary'>Login/Register</button>
         </div>
-        <SectionCard {...cardDetails}/>
+
+        {cardDetails.length>0 && cardDetails.map((item,index)=> {
+            return (<SectionCard {...item} key={index}/>)
+        }) }
     </div>
   )
 }
