@@ -1,6 +1,5 @@
 import React from 'react';
-import AccountLogo from "../assets/account_logo.svg"
-
+import AccountLogo from "../assets/account_logo.svg";
 
 const Header = () => {
   return (

@@ -4,10 +4,36 @@
 
 
 @layer base {
+  
+	@font-face {
+		font-family: "Barlow-Bold";
+		src: url("./fonts/BarlowCondensed-Bold.ttf") format("woff2");
+	}
+	@font-face {
+		font-family: "Barlow-Italic";
+		src: url("./fonts/BarlowCondensed-Italic.ttf") format("woff2");
+	}
+  @font-face {
+		font-family: "Barlow-Regular";
+		src: url("./fonts/BarlowCondensed-Regular.ttf") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+	}
 
   body {
-    @apply max-w-standard mx-auto bg-slate-100;
+      @apply font-body;
   }
+
+}
+
+@layer components {
+.App {
+  @apply max-w-standard min-h-screen mx-auto bg-slate-100 p-4;
+}
+
+.btn-primary {
+  @apply bg-cyan-600 text-white px-2 py-1 rounded w-fit h-fit;
+}
 
 
 }
