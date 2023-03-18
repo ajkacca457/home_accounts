@@ -3,6 +3,7 @@ module.exports = {
   safelist: [],
   theme: {
     screens: {
+      //screen dosnt work with max width in react
       'small': '640px',
       'medium':'1200px'
     },
