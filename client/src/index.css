@@ -32,7 +32,7 @@
 }
 
 .btn-primary {
-  @apply bg-cyan-600 text-white px-2 py-1 rounded w-fit h-fit;
+  @apply bg-cyan-600 hover:bg-cyan-700 text-white px-2 py-1 rounded w-fit h-fit;
 }
 
 
