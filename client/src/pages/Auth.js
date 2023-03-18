@@ -15,11 +15,10 @@ const initailValues= {
 
 const [values,setValues]= useState(initailValues);
 
-console.log(values);
-
 const handleChange=(e)=>{
-    console.log(e.target.value);
+    setValues({...values,[e.target.name]:e.target.value})
 }
+
 
 const toggleForm=(e)=>{
     e.preventDefault();
