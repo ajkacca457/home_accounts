@@ -26,9 +26,9 @@ const handleChange=(e)=>{
 const handleSubmit=(e)=>{
     e.preventDefault();
 
-    const {firstname,lastname,email,password}=values;
+    const {firstname,lastname,email,password,isRegistered}=values;
 
-    if(!firstname||!lastname||!email||!password) {
+    if((!firstname && !isRegistered)||(!lastname && !isRegistered)||!email||!password) {
         displayAlert();
         return
     }
@@ -37,10 +37,10 @@ const handleSubmit=(e)=>{
 
 const toggleForm=(e)=>{
     e.preventDefault();
-    setValues({...values,isRegistered:!values.isRegistered})
+    setValues({firstname:"",lastname:"",email:"",password:"",isRegistered:!values.isRegistered})
 }
 
-  return (
+return (
         <div className="w-3/6 mx-auto">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                 <div className="mb-6 w-full">
