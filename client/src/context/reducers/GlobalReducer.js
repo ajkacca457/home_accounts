@@ -8,7 +8,7 @@ const GlobalReducer=(state,action)=>{
             return {
                 ...state,
                 showAlert:true,
-                alertClasses:"bg-red-500 text-white",
+                alertClasses:"bg-red-400 text-white",
                 alertText:"Please provide all the fields"
             }
         case CLEAR_ALERT:
