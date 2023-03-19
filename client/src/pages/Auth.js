@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import AccountLogo from "../assets/account_logo.svg"
 import FormRow from '../components/FormRow';
+import Alert from '../components/Alert';
 
 const Auth = () => {
 
@@ -10,7 +11,8 @@ const initailValues= {
     lastname:"",
     email:"",
     password:"",
-    isRegistered:false
+    isRegistered:false,
+    ShowAlert:false
 };
 
 const [values,setValues]= useState(initailValues);
@@ -37,6 +39,9 @@ const toggleForm=(e)=>{
                 </div>
 
                 <h1 className='font-heading text-center my-6'>{!values.isRegistered?"Register":"Login"}</h1>
+
+                {values.ShowAlert && <Alert/>}
+
                 {!values.isRegistered && <FormRow type="text" name="firstname" value={values.firstname} labelText="Firstname" placeholderText="Enter your first name" handleChange={handleChange}/>}
                 {!values.isRegistered && <FormRow type="text" name="lastname" value={values.lastname} labelText="Lastname" placeholderText="Enter your last name" handleChange={handleChange}/>}
                 <FormRow type="email" name="email" value={values.email} labelText="Email" placeholderText="Enter email address" handleChange={handleChange}/>
