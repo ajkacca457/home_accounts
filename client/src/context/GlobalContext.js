@@ -16,7 +16,8 @@ const GlobalContextProvider=({children})=>{
     const [state,dispatch]= useReducer(GlobalReducer,initialState);
 
     const displayAlert=()=> {
-        dispatch({type:SHOW_ALERT})
+        dispatch({type:SHOW_ALERT});
+        clearAlert();
     }
 
     const clearAlert=()=> {
