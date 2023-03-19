@@ -4,10 +4,11 @@ import AccountLogo from "../assets/account_logo.svg"
 import FormRow from '../components/FormRow';
 import Alert from '../components/Alert';
 import { useGlobalContext } from '../context/GlobalContext';
+import { NavLink } from 'react-router-dom';
 
 const Auth = () => {
 
-const {showAlert,displayAlert,clearAlert}=useGlobalContext(); 
+const {showAlert,displayAlert}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
@@ -44,7 +45,9 @@ return (
         <div className="w-3/6 mx-auto">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                 <div className="mb-6 w-full">
-                    <img src={AccountLogo} alt="logo" className='w-[300px] h-[60px]'/>
+                    <NavLink to="/">
+                        <img src={AccountLogo} alt="logo" className='w-[300px] h-[60px]'/>
+                    </NavLink>
                 </div>
 
                 <h1 className='font-heading text-center my-6'>{!values.isRegistered?"Register":"Login"}</h1>
