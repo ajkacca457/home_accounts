@@ -3,8 +3,11 @@ import { useState } from 'react';
 import AccountLogo from "../assets/account_logo.svg"
 import FormRow from '../components/FormRow';
 import Alert from '../components/Alert';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const Auth = () => {
+
+const {showAlert,displayAlert,clearAlert}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
@@ -12,7 +15,6 @@ const initailValues= {
     email:"",
     password:"",
     isRegistered:false,
-    ShowAlert:false
 };
 
 const [values,setValues]= useState(initailValues);
@@ -23,7 +25,14 @@ const handleChange=(e)=>{
 
 const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log(values);
+
+    const {firstname,lastname,email,password}=values;
+
+    if(!firstname||!lastname||!email||!password) {
+        displayAlert();
+        return
+    }
+    
 }
 
 const toggleForm=(e)=>{
@@ -40,7 +49,7 @@ const toggleForm=(e)=>{
 
                 <h1 className='font-heading text-center my-6'>{!values.isRegistered?"Register":"Login"}</h1>
 
-                {values.ShowAlert && <Alert/>}
+                {showAlert && <Alert/>}
 
                 {!values.isRegistered && <FormRow type="text" name="firstname" value={values.firstname} labelText="Firstname" placeholderText="Enter your first name" handleChange={handleChange}/>}
                 {!values.isRegistered && <FormRow type="text" name="lastname" value={values.lastname} labelText="Lastname" placeholderText="Enter your last name" handleChange={handleChange}/>}
