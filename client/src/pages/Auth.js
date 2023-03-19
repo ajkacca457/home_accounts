@@ -37,7 +37,7 @@ const handleSubmit=(e)=>{
 
 const toggleForm=(e)=>{
     e.preventDefault();
-    setValues({firstname:"",lastname:"",email:"",password:"",isRegistered:!values.isRegistered})
+    setValues({...initailValues,isRegistered:!values.isRegistered})
 }
 
 return (
