@@ -19,7 +19,7 @@ function App() {
           </Route>
           <Route path="/" index element={<Home/>}/>
           <Route path='/auth' element={<Auth/>}/>
-          <Route path='/*' element={<Error/>}/>
+          <Route path='*' element={<Error/>}/>
         </Routes>
       </BrowserRouter>
     </div>
