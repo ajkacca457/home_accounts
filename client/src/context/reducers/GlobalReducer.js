@@ -1,4 +1,4 @@
-import { SHOW_ALERT,CLEAR_ALERT } from "../actions/actions";
+import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGISTER_USER_ERROR } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{

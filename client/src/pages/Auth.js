@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 const Auth = () => {
 
-const {showAlert,displayAlert}=useGlobalContext(); 
+const {showAlert,displayAlert, registerUser}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
@@ -33,7 +33,11 @@ const handleSubmit=(e)=>{
         displayAlert();
         return
     }
-    
+    const user= {firstname,lastname,email,password};
+
+    registerUser(user);
+    setValues({...initailValues});
+
 }
 
 const toggleForm=(e)=>{
