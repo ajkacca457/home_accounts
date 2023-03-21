@@ -30,12 +30,18 @@ const GlobalReducer=(state,action)=>{
                 ...state,
                 isLoading:false,
                 user:user,
-                token:token
+                token:token,
+                showAlert:true,
+                alertClasses:"bg-green-400 text-white",
+                alertText:`${action.payload.message}.Redirecting..`
             }
         case REGISTER_USER_ERROR: 
             return {
                 ...state,
-                isLoading:false
+                isLoading:false,
+                showAlert:true,
+                alertClasses:"bg-red-400 text-white",
+                alertText:action.payload.message
             }        
         default:
             return state

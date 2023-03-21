@@ -36,11 +36,11 @@ const GlobalContextProvider=({children})=>{
         try {
             const response= await api.post("/auth/register",currentUser);
             const {user,token,message}=response.data;
-            dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token}})
+            dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token,message}})
         } catch (error) {
             const {message}= error.response.data;
-            displayAlert("bg-red-400",message);
-            dispatch({type:REGISTER_USER_ERROR});
+            dispatch({type:REGISTER_USER_ERROR,payload:{message}});
+            clearAlert();
         }
     }
 
