@@ -39,7 +39,9 @@ const GlobalContextProvider=({children})=>{
             displayAlert("bg-green-400 text-white",message);
             dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token}})
         } catch (error) {
-            console.log(error);
+            const {message}= error.response.data;
+            displayAlert("bg-red-400",message);
+            dispatch({type:REGISTER_USER_ERROR});
         }
     }
 
