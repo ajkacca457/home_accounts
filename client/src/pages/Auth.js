@@ -30,7 +30,7 @@ const handleSubmit=(e)=>{
     const {firstname,lastname,email,password,isRegistered}=values;
 
     if((!firstname && !isRegistered)||(!lastname && !isRegistered)||!email||!password) {
-        displayAlert();
+        displayAlert("bg-red-400 text-white","Please provide all the fields");
         return
     }
     const user= {firstname,lastname,email,password};

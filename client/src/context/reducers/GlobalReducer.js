@@ -5,18 +5,38 @@ const GlobalReducer=(state,action)=>{
 
     switch (action.type) {
         case SHOW_ALERT:
+            const {classes,message}=action.payload;
             return {
                 ...state,
                 showAlert:true,
-                alertClasses:"bg-red-400 text-white",
-                alertText:"Please provide all the fields"
+                alertClasses:classes,
+                alertText:message
             }
         case CLEAR_ALERT:
             return {
                 ...state,
                 showAlert:false
             }
+        
+        case REGISTER_USER_BEGIN:
+                return {
+                    ...state,
+                    isLoading:true
+                }
 
+        case REGISTER_USER_SUCCESS: 
+            const {user,token}=action.payload;    
+            return {
+                ...state,
+                isLoading:false,
+                user:user,
+                token:token
+            }
+        case REGISTER_USER_ERROR: 
+            return {
+                ...state,
+                isLoading:false
+            }        
         default:
             return state
     }
