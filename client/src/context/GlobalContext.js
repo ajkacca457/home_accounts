@@ -36,7 +36,6 @@ const GlobalContextProvider=({children})=>{
         try {
             const response= await api.post("/auth/register",currentUser);
             const {user,token,message}=response.data;
-            displayAlert("bg-green-400 text-white",message);
             dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token}})
         } catch (error) {
             const {message}= error.response.data;
