@@ -30,13 +30,23 @@ const GlobalContextProvider=({children})=>{
         },2000)
     }
 
+    const addToLocalStorage=(myuser,usertoken)=>{
+        localStorage.setItem("user",JSON.stringify(myuser));
+        localStorage.setItem("token",usertoken);
+    }
+
+    const clearLocalStorage=()=> {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+    }
 
     const registerUser=async(currentUser)=> {
         dispatch({type:REGISTER_USER_BEGIN});
         try {
             const response= await api.post("/auth/register",currentUser);
             const {user,token,message}=response.data;
-            dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token,message}})
+            dispatch({type:REGISTER_USER_SUCCESS,payload:{user,token,message}});
+            addToLocalStorage(user,token);
         } catch (error) {
             const {message}= error.response.data;
             dispatch({type:REGISTER_USER_ERROR,payload:{message}});
