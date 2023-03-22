@@ -1,7 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 import { api } from "../utilites/axiosConfig";
 import GlobalReducer from "./reducers/GlobalReducer";
-import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGISTER_USER_ERROR, LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR } from "./actions/actions";
+import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR, LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER } from "./actions/actions";
 
 const GlobalContext= createContext();
 
@@ -73,9 +74,14 @@ const GlobalContextProvider=({children})=>{
         }
     }
 
+    const logOutUser= ()=>{
+        dispatch({type:LOGOUT_USER});
+        clearLocalStorage();
+    }
+
 
     return (
-        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser}}>
+        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser}}>
             {children}
         </GlobalContext.Provider>
     )
