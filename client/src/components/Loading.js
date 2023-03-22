@@ -3,9 +3,9 @@ import Spinner from "../assets/Spinner.gif"
 
 const Loading = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center gap-[10px] bg-white my-8 py-4'>
         <img src={Spinner} alt="" />
-        Loading...
+        <p>Loading...</p>
     </div>
   )
 }

@@ -28,7 +28,7 @@ useEffect(()=>{
     if(user) {
         setTimeout(()=>{
             navigate("/dashboard");
-        },1500)
+        },1000)
     }
 },[user,navigate])
 

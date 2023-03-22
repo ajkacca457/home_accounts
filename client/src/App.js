@@ -5,6 +5,7 @@ import IncomeList from './pages/IncomeList';
 import ExpenseList from './pages/ExpenseList';
 import Error from './pages/Error';
 import SharedLayout from './components/SharedLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
 function App() {
@@ -12,7 +13,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/dashboard' element={<SharedLayout/>}> 
+          <Route path='/dashboard' 
+          element={
+          <ProtectedRoute>
+            <SharedLayout/>
+          </ProtectedRoute>}
+          > 
             <Route index element={<Stats/>}/>
             <Route path='incomes' element={<IncomeList/>}/>
             <Route path='expenses' element={<ExpenseList/>}/>    
