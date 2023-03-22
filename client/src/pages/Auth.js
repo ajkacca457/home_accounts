@@ -9,14 +9,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 const Auth = () => {
 
-const {showAlert,displayAlert, registerUser, user}=useGlobalContext(); 
+const {showAlert,displayAlert, registerUser,loginUser,user}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
     lastname:"",
     email:"",
     password:"",
-    isRegistered:false,
+    isRegistered:true,
 };
 
 const [values,setValues]= useState(initailValues);
@@ -47,10 +47,16 @@ const handleSubmit=(e)=>{
         displayAlert("bg-red-400 text-white","Please provide all the fields");
         return
     }
-    const user= {firstname,lastname,email,password};
+    const registerUserDetail= {firstname,lastname,email,password};
+    const loginUserDetail= {email,password};
 
-    registerUser(user);
-    setValues({...initailValues});
+    if(isRegistered) {
+        loginUser(loginUserDetail);
+        setValues({...initailValues});
+    } else {
+        registerUser(registerUserDetail);
+        setValues({...initailValues,isRegistered:false});
+    }
 
 }
 
@@ -79,12 +85,12 @@ return (
     
                 <div className="flex items-center justify-between">
                     <button className="btn-primary" type="submit">
-                        {!values.isRegistered?"Submit":"Sign In"}
+                        {values.isRegistered?"Sign In":"Submit"}
                     </button>
                 </div>
                 
                 <div className='text-right text-cyan-700'>
-                    {!values.isRegistered?<p>Already a member? Please <button className='btn-underline' onClick={toggleForm}>Login</button> with your credintials.</p>:<p>Dont have an account? <button className='btn-underline' onClick={toggleForm}>Register</button> first to use the app.</p>}
+                    {values.isRegistered?<p>Dont have an account? <button className='btn-underline' onClick={toggleForm}>Register</button> first to use the app.</p>:<p>Already a member? Please <button className='btn-underline' onClick={toggleForm}>Login</button> with your credintials.</p>}
                 </div>
 
             </form>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { api } from "../utilites/axiosConfig";
 import GlobalReducer from "./reducers/GlobalReducer";
-import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGISTER_USER_ERROR } from "./actions/actions";
+import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGISTER_USER_ERROR, LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR } from "./actions/actions";
 
 const GlobalContext= createContext();
 
@@ -59,9 +59,23 @@ const GlobalContextProvider=({children})=>{
         }
     }
 
+    const loginUser=async(currentUser)=> {
+        dispatch({type:LOGIN_USER_BEGIN});
+        try {
+            const response= await api.post("/auth/login",currentUser);
+            const {user,token,message}=response.data;
+            dispatch({type:LOGIN_USER_SUCCESS,payload:{user,token,message}});
+            addToLocalStorage(user,token);
+        } catch (error) {
+            const {message}= error.response.data;
+            dispatch({type:LOGIN_USER_ERROR,payload:{message}});
+            clearAlert();
+        }
+    }
+
 
     return (
-        <GlobalContext.Provider value={{...state,displayAlert,registerUser}}>
+        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser}}>
             {children}
         </GlobalContext.Provider>
     )
