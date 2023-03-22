@@ -5,11 +5,12 @@ import FormRow from '../components/FormRow';
 import Alert from '../components/Alert';
 import { useGlobalContext } from '../context/GlobalContext';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading';
 
 
 const Auth = () => {
 
-const {showAlert,displayAlert, registerUser,loginUser,user}=useGlobalContext(); 
+const {showAlert,displayAlert, registerUser,loginUser,user, isLoading}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
@@ -28,7 +29,7 @@ useEffect(()=>{
     if(user) {
         setTimeout(()=>{
             navigate("/dashboard");
-        },2000)
+        },1500)
     }
 },[user,navigate])
 
@@ -84,7 +85,7 @@ return (
                 <FormRow type="password" name="password" value={values.password} labelText="Password" placeholderText="Enter password" handleChange={handleChange}/>
     
                 <div className="flex items-center justify-between">
-                    <button className="btn-primary" type="submit">
+                    <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400" type="submit" disabled={isLoading || user}>
                         {values.isRegistered?"Sign In":"Submit"}
                     </button>
                 </div>
