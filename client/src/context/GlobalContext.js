@@ -5,10 +5,15 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,REGIST
 
 const GlobalContext= createContext();
 
+
+const user= localStorage.getItem("user");
+const token=localStorage.getItem("token");
+
+
 const initialState= {
     isLoading:false,
-    user:null,
-    token:null,
+    user:user?JSON.parse(user):null,
+    token:token?token:null,
     userLocation:"",
     showAlert:false,
     alertClasses:"",
