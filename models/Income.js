@@ -22,6 +22,11 @@ const IncomeSchema= new mongoose.Schema({
     required:[true, "category is required"],
     enum: ["Salary","Profit", "Investment", "Interest", "Other"]
     },
+    status: {
+        type:String,
+        required:[true,"status is required"],
+        enum:["received","incoming"]
+    },
     createdBy: {
         type:mongoose.Types.ObjectId,
         ref:"User",

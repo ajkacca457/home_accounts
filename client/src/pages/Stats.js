@@ -5,7 +5,6 @@ const Stats = () => {
   return (
     <div>
       Will Show all the status
-    <Loading/>  
     </div>
   )
 }
