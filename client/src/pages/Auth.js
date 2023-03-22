@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import AccountLogo from "../assets/account_logo.svg"
 import FormRow from '../components/FormRow';
 import Alert from '../components/Alert';
 import { useGlobalContext } from '../context/GlobalContext';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 
 const Auth = () => {
 
-const {showAlert,displayAlert, registerUser}=useGlobalContext(); 
+const {showAlert,displayAlert, registerUser, user}=useGlobalContext(); 
 
 const initailValues= {
     firstname:"",
@@ -19,6 +20,19 @@ const initailValues= {
 };
 
 const [values,setValues]= useState(initailValues);
+
+const navigate=useNavigate();
+
+
+useEffect(()=>{
+    if(user) {
+        setTimeout(()=>{
+            navigate("/dashboard");
+        },2000)
+    }
+},[user,navigate])
+
+
 
 const handleChange=(e)=>{
     setValues({...values,[e.target.name]:e.target.value})
