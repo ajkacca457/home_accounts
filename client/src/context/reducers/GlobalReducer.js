@@ -71,7 +71,8 @@ const GlobalReducer=(state,action)=>{
             return {
                 ...state,
                 user:null,
-                token:null
+                token:null,
+                showAlert:false
             }
             
         default:
