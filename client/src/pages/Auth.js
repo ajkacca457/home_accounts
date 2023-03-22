@@ -5,8 +5,7 @@ import FormRow from '../components/FormRow';
 import Alert from '../components/Alert';
 import { useGlobalContext } from '../context/GlobalContext';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Loading from '../components/Loading';
-
+import Ring from "../assets/ring.svg";
 
 const Auth = () => {
 
@@ -86,7 +85,7 @@ return (
     
                 <div className="flex items-center justify-between">
                     <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400" type="submit" disabled={isLoading || user}>
-                        {values.isRegistered?"Sign In":"Submit"}
+                        {isLoading || user?<img src={Ring} alt="loading"/>:values.isRegistered?"Sign In":"Submit"}
                     </button>
                 </div>
                 
