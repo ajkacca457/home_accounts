@@ -1,8 +1,8 @@
-import { createContext, useContext, useReducer } from "react";
-import { api } from "../utilites/axiosConfig";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import GlobalReducer from "./reducers/GlobalReducer";
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR, LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER } from "./actions/actions";
+import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
 
@@ -46,6 +46,10 @@ const GlobalContextProvider=({children})=>{
         localStorage.removeItem("token");
     }
 
+
+    const api= apiFetch(state.token);
+
+
     const registerUser=async(currentUser)=> {
         dispatch({type:REGISTER_USER_BEGIN});
         try {
@@ -78,7 +82,6 @@ const GlobalContextProvider=({children})=>{
         dispatch({type:LOGOUT_USER});
         clearLocalStorage();
     }
-
 
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser}}>
