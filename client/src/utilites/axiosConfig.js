@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export const apiFetch=(token=null)=> {
-
-    console.log(token);
-
+    
     const api= axios.create({
         baseURL:"http://localhost:5000/api/v1"
     })

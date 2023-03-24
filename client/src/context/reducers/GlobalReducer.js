@@ -1,5 +1,6 @@
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
-    REGISTER_USER_ERROR,LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER } from "../actions/actions";
+    REGISTER_USER_ERROR,LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER,
+    INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -73,6 +74,22 @@ const GlobalReducer=(state,action)=>{
                 user:null,
                 token:null,
                 showAlert:false
+            }
+        
+        case INCOME_FETCH_BEGIN: 
+            return {
+                ...state,
+                isLoading:true,
+                showAlert:false
+            }
+        case INCOME_FETCH_SUCCESS: 
+            return {
+                ...state,
+                isLoading:false,
+                incomes:action.payload.data,
+                totalIncomes:action.payload.totalItems,
+                numberOfIncomePages: action.payload.numberOfPages
+
             }
             
         default:
