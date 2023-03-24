@@ -1,6 +1,7 @@
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR,LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER,
-    INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR } from "../actions/actions";
+    INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR,
+    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -99,7 +100,30 @@ const GlobalReducer=(state,action)=>{
                 alertClasses:"bg-red-400 text-white",
                 alertText:action.payload.message
             }
-            
+
+        case EXPENSE_FETCH_BEGIN: 
+            return {
+                ...state,
+                isLoading:true,
+                showAlert:false
+            }
+        case EXPENSE_FETCH_SUCCESS: 
+            return {
+                ...state,
+                isLoading:false,
+                expenses:action.payload.data,
+                totalExpenses:action.payload.totalItems,
+                numberOfExpensePages: action.payload.numberOfPages
+
+            }
+        case EXPENSE_FETCH_ERROR:
+            return {
+                ...state,
+                isLoading:false,
+                showAlert:true,
+                alertClasses:"bg-red-400 text-white",
+                alertText:action.payload.message
+            }
         default:
             return state
     }

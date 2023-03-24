@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import GlobalReducer from "./reducers/GlobalReducer";
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR, 
@@ -109,7 +109,7 @@ const GlobalContextProvider=({children})=>{
     const getExpenses= async()=> {
         dispatch({type:EXPENSE_FETCH_BEGIN});
         try {
-            const response= await api.get("/incomes");
+            const response= await api.get("/expenses");
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:EXPENSE_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {
@@ -121,7 +121,7 @@ const GlobalContextProvider=({children})=>{
 
 
     return (
-        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes}}>
+        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes,getExpenses}}>
             {children}
         </GlobalContext.Provider>
     )
