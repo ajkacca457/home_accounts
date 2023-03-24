@@ -91,6 +91,14 @@ const GlobalReducer=(state,action)=>{
                 numberOfIncomePages: action.payload.numberOfPages
 
             }
+        case INCOME_FETCH_ERROR:
+            return {
+                ...state,
+                isLoading:false,
+                showAlert:true,
+                alertClasses:"bg-red-400 text-white",
+                alertText:action.payload.message
+            }
             
         default:
             return state

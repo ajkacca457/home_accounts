@@ -20,7 +20,20 @@ const IncomeList = () => {
   }
 
   return (
-    <div>IncomeList</div>
+    <div>
+      {incomes && incomes.map((item)=>{
+        return (
+          <div key={item._id} className="bg-white my-2 p-4">
+            <h4>{item.title}</h4>
+            <p>{item.information}</p>
+            <p>{item.status}</p> 
+            <p>{item.amount}</p>
+            <p>{item.category}</p>
+          </div>
+        )
+      })}
+
+    </div>
   )
 }
 

@@ -1,7 +1,10 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import GlobalReducer from "./reducers/GlobalReducer";
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
-    REGISTER_USER_ERROR, LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER, INCOME_FETCH_BEGIN, INCOME_FETCH_SUCCESS } from "./actions/actions";
+    REGISTER_USER_ERROR, 
+    LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER, 
+    INCOME_FETCH_BEGIN, INCOME_FETCH_SUCCESS,
+    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR, INCOME_FETCH_ERROR } from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -95,17 +98,25 @@ const GlobalContextProvider=({children})=>{
         try {
             const response= await api.get("/incomes");
             const {data,totalItems,numberOfPages}= response.data;
-            console.log(data,totalItems,numberOfPages);
             dispatch({type:INCOME_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {
             const {message}= error.response.data;
-            dispatch({type:LOGIN_USER_ERROR,payload:{message}});
+            dispatch({type:INCOME_FETCH_ERROR,payload:{message}});
         }
         clearAlert();
     }
 
     const getExpenses= async()=> {
-        console.log("will get all the expenses");
+        dispatch({type:EXPENSE_FETCH_BEGIN});
+        try {
+            const response= await api.get("/incomes");
+            const {data,totalItems,numberOfPages}= response.data;
+            dispatch({type:EXPENSE_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
+        } catch (error) {
+            const {message}= error.response.data;
+            dispatch({type:EXPENSE_FETCH_ERROR,payload:{message}});
+        }
+        clearAlert();
     }
 
 
