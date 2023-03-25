@@ -8,8 +8,8 @@ const CardTags = ({info:{cardClass,totalIncomes=null,totalExpenses=null}}) => {
         <p className='col-span-2 place-self-center'>Information</p>
         <p className='col-span-2 place-self-center'>Category</p>
         <p className='col-span-2 place-self-center'>Amount</p>
-        {totalIncomes && <p className='col-span-2 place-self-center'>{totalIncomes} transactions found</p>}
-        {totalExpenses && <p className='col-span-2 place-self-center'>{totalExpenses} transactions found</p>}
+        {totalIncomes && <p className='col-span-2 place-self-center'>{totalIncomes} transaction found</p>}
+        {totalExpenses && <p className='col-span-2 place-self-center'>{totalExpenses} transaction found</p>}
     </div>
   )
 }

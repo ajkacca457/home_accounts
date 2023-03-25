@@ -4,6 +4,7 @@ import Stats from './pages/Stats';
 import IncomeList from './pages/IncomeList';
 import ExpenseList from './pages/ExpenseList';
 import Error from './pages/Error';
+import AddTransaction from './pages/AddTransaction';
 import SharedLayout from './components/SharedLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
@@ -21,7 +22,8 @@ function App() {
           > 
             <Route index element={<Stats/>}/>
             <Route path='incomes' element={<IncomeList/>}/>
-            <Route path='expenses' element={<ExpenseList/>}/>    
+            <Route path='expenses' element={<ExpenseList/>}/>
+            <Route path='add-transaction' element={<AddTransaction/>}/>    
           </Route>
           <Route path="/" index element={<Home/>}/>
           <Route path='/auth' element={<Auth/>}/>

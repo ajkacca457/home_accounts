@@ -1,5 +1,6 @@
 import {FcStatistics, FcMoneyTransfer} from "react-icons/fc"
 import {TiShoppingCart} from "react-icons/ti"
+import {BsPlusSquare} from "react-icons/bs"
 
 export const links= [
     {
@@ -20,5 +21,10 @@ export const links= [
         text:"All Expenses",
         icon:<TiShoppingCart/>
     },
-
+    {
+        id:4,
+        path:"/dashboard/add-transaction",
+        text:"Add Transaction",
+        icon:<BsPlusSquare/>
+    },
 ]
