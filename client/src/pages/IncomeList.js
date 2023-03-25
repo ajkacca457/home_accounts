@@ -22,7 +22,7 @@ const IncomeList = () => {
   }
 
   return (
-    <div>
+    <div className='mt-10'>
       <CardTags bgclass={"bg-indigo-500"}/>
       {incomes && incomes.map((item)=>{
         return (

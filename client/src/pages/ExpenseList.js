@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import Loading from '../components/Loading';
 import Card from '../components/Card';
+import CardTags from '../components/CardTags';
 
 const ExpenseList = () => {
   const {isLoading,getExpenses,expenses}= useGlobalContext();
@@ -23,7 +24,8 @@ const ExpenseList = () => {
   }
 
   return (
-    <div>
+    <div className='mt-10'>
+      <CardTags  bgclass={"bg-red-500"}/>
       {expenses && expenses.map((item)=>{
         return (
             <Card key={item._id} {...item}/>
