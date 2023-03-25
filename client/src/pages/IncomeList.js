@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context/GlobalContext'
 import Loading from "../components/Loading";
-import Card from '../components/Card';
+import IncomeCard from '../components/IncomeCard';
 import CardTags from '../components/CardTags';
 import Alert from "../components/Alert";
 
@@ -28,7 +28,7 @@ const IncomeList = () => {
       <CardTags bgclass={"bg-indigo-500"}/>
       {incomes && incomes.map((item)=>{
         return (
-           <Card key={item._id} {...item}/> 
+           <IncomeCard key={item._id} {...item}/> 
         )
       })}
 

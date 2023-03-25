@@ -119,9 +119,12 @@ const GlobalContextProvider=({children})=>{
         clearAlert();
     }
 
+    const deleteTransaction=(id)=>{
+        console.log(id);
+    }
 
     return (
-        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes,getExpenses}}>
+        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes,getExpenses, deleteTransaction}}>
             {children}
         </GlobalContext.Provider>
     )

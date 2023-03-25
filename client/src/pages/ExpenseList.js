@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import Loading from '../components/Loading';
-import Card from '../components/Card';
+import ExpenseCard from '../components/ExpenseCard';
 import CardTags from '../components/CardTags';
 import Alert from '../components/Alert';
 
 const ExpenseList = () => {
   const {isLoading,getExpenses,expenses}= useGlobalContext();
-
-  console.log(expenses);
-
   useEffect(()=>{
     getExpenses()
   },[])
@@ -30,7 +27,7 @@ const ExpenseList = () => {
       <CardTags  bgclass={"bg-red-500"}/>
       {expenses && expenses.map((item)=>{
         return (
-            <Card key={item._id} {...item}/>
+            <ExpenseCard key={item._id} {...item}/>
         )
       })}
 
