@@ -3,6 +3,7 @@ import { useGlobalContext } from '../context/GlobalContext'
 import Loading from "../components/Loading";
 import Card from '../components/Card';
 import CardTags from '../components/CardTags';
+import Alert from "../components/Alert";
 
 const IncomeList = () => {
   const {isLoading,incomes,getIncomes}= useGlobalContext();
@@ -23,6 +24,7 @@ const IncomeList = () => {
 
   return (
     <div className='mt-10'>
+      <Alert/>
       <CardTags bgclass={"bg-indigo-500"}/>
       {incomes && incomes.map((item)=>{
         return (
