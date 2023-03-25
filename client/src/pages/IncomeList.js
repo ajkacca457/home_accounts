@@ -6,7 +6,7 @@ import CardTags from '../components/CardTags';
 import Alert from "../components/Alert";
 
 const IncomeList = () => {
-  const {isLoading,incomes,getIncomes}= useGlobalContext();
+  const {isLoading,incomes,getIncomes, totalIncomes}= useGlobalContext();
 
   useEffect(()=>{
     getIncomes();
@@ -25,7 +25,7 @@ const IncomeList = () => {
   return (
     <div className='mt-10'>
       <Alert/>
-      <CardTags bgclass={"bg-indigo-500"}/>
+      <CardTags info={{cardClass:"bg-indigo-500",totalIncomes}}/>
       {incomes && incomes.map((item)=>{
         return (
            <IncomeCard key={item._id} {...item}/> 

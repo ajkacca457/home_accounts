@@ -1,7 +1,8 @@
 import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR,LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER,
     INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR,
-    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR } from "../actions/actions";
+    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR,
+    DELETE_INCOME_BEGINS, DELETE_EXPENSE_BEGINS } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -124,6 +125,19 @@ const GlobalReducer=(state,action)=>{
                 alertClasses:"bg-red-400 text-white",
                 alertText:action.payload.message
             }
+        
+        case DELETE_INCOME_BEGINS:
+            return {
+                ...state,
+                isLoading:true
+            }
+        
+        case DELETE_EXPENSE_BEGINS:
+            return {
+                ...state,
+                isLoading:true
+            }
+
         default:
             return state
     }

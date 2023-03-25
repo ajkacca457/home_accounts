@@ -6,7 +6,7 @@ import CardTags from '../components/CardTags';
 import Alert from '../components/Alert';
 
 const ExpenseList = () => {
-  const {isLoading,getExpenses,expenses}= useGlobalContext();
+  const {isLoading,getExpenses,expenses,totalExpenses}= useGlobalContext();
   useEffect(()=>{
     getExpenses()
   },[])
@@ -24,7 +24,7 @@ const ExpenseList = () => {
   return (
     <div className='mt-10'>
       <Alert/>
-      <CardTags  bgclass={"bg-red-500"}/>
+      <CardTags  info={{cardClass:"bg-red-500",totalExpenses}}/>
       {expenses && expenses.map((item)=>{
         return (
             <ExpenseCard key={item._id} {...item}/>

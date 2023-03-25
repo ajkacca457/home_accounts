@@ -4,7 +4,7 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR, 
     LOGIN_USER_BEGIN,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR,LOGOUT_USER, 
     INCOME_FETCH_BEGIN, INCOME_FETCH_SUCCESS,
-    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR, INCOME_FETCH_ERROR } from "./actions/actions";
+    EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR, INCOME_FETCH_ERROR, DELETE_INCOME_BEGINS } from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -119,12 +119,22 @@ const GlobalContextProvider=({children})=>{
         clearAlert();
     }
 
-    const deleteTransaction=(id)=>{
+    const deleteIncome=async(id)=>{
+        dispatch({type:DELETE_INCOME_BEGINS});
+        try {
+            await api.delete(`/incomes/${id}`);
+            getIncomes();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    const deleteExpense=(id)=>{
         console.log(id);
     }
 
     return (
-        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes,getExpenses, deleteTransaction}}>
+        <GlobalContext.Provider value={{...state,displayAlert,registerUser,loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense}}>
             {children}
         </GlobalContext.Provider>
     )

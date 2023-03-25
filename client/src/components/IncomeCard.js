@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context/GlobalContext';
 
 const IncomeCard = ({title,amount,status,information,category,_id:id}) => {
 
-  const {deleteTransaction}= useGlobalContext();
+  const {deleteIncome}= useGlobalContext();
 
   return (
     <div className='bg-white py-2 my-2 grid grid-cols-12'>
@@ -13,7 +13,7 @@ const IncomeCard = ({title,amount,status,information,category,_id:id}) => {
         <p className='col-span-2 place-self-center'>{category}</p>
         <p className='col-span-2 place-self-center'>{amount}</p>
         <button className='col-span-1 bg-orange-300 w-fit h-fit px-2 py-1 rounded'>Edit</button>
-        <button className='col-span-1 bg-red-400 w-fit h-fit px-2 py-1 rounded text-white' onClick={()=>{deleteTransaction(id)}}>Delete</button>
+        <button className='col-span-1 bg-red-400 w-fit h-fit px-2 py-1 rounded text-white' onClick={()=>{deleteIncome(id)}}>Delete</button>
     </div>
   )
 }
