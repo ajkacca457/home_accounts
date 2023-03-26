@@ -28,3 +28,6 @@ export const links= [
         icon:<BsPlusSquare/>
     },
 ]
+
+export const incomeCategories=["Salary","Profit", "Investment", "Interest", "Other"];
+export const expenseCategories=["Groceries","Rent", "Insurance", "Entertainment", "Education","Health","Miscellaneous"];

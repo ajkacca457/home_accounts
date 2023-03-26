@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import FormRow from './FormRow'
+import FormRow from './FormRow';
+import { incomeCategories,expenseCategories } from '../utilites/linkData';
 
 const AddForm = () => {
 
@@ -14,11 +15,22 @@ const AddForm = () => {
 
 
     const [formvalues,setFormValues]= useState(initialValues);
-    console.log(formvalues.type);
 
 const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log("working form")
+    const {title,information,amount,category,status,type}= formvalues;
+
+    if(!title||!information||!amount||!category||!status) {
+        alert("please fill all the fields");
+        return;
+    }
+
+    if(type==="income") {
+        console.log("will create new income")
+    } else {
+        console.log("will create new expense")
+    }
+
 }
 
 const handleChange=(e)=>{
@@ -40,8 +52,9 @@ const handleChange=(e)=>{
             <>
             <label htmlFor="category" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Category</label>
             <select name="category" id="category" value={formvalues.category} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
-                <option value="received">received</option>
-                <option value="incoming">incoming</option> 
+                {incomeCategories.map((item,index)=>{
+                    return <option value={item} key={index}>{item}</option>
+                })}
              </select>
              <label htmlFor="status" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Status</label>
             <select name="status" id="status" value={formvalues.status} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
@@ -50,16 +63,21 @@ const handleChange=(e)=>{
             </select>
             </>:
             <>
-            <select name="type" id="type" value={formvalues.category} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
-                <option value="income">income</option>
-                <option value="expense">expense</option> 
-            </select>
-            <select name="type" id="type" value={formvalues.status} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
-                <option value="income">income</option>
-                <option value="expense">expense</option> 
+            <label htmlFor="category" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Category</label>
+            <select name="category" id="category" value={formvalues.category} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
+                {expenseCategories.map((item,index)=>{
+                    return <option value={item} key={index}>{item}</option>
+                })}
+             </select>
+             <label htmlFor="status" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Status</label>
+            <select name="status" id="status" value={formvalues.status} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
+                <option value="paid">paid</option>
+                <option value="due">due</option> 
             </select>
             </>
             }
+
+            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Submit</button>
 
     </form>
   )
