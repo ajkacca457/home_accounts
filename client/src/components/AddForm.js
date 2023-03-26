@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FormRow from './FormRow';
 import { incomeCategories,expenseCategories } from '../utilites/linkData';
+import { useGlobalContext } from '../context/GlobalContext';
 
 const AddForm = () => {
 
@@ -16,6 +17,9 @@ const AddForm = () => {
 
     const [formvalues,setFormValues]= useState(initialValues);
 
+    const {addTransaction}= useGlobalContext();
+
+
 const handleSubmit=(e)=>{
     e.preventDefault();
     const {title,information,amount,category,status,type}= formvalues;
@@ -25,10 +29,18 @@ const handleSubmit=(e)=>{
         return;
     }
 
+    const transaction= {
+        title,
+        information,
+        amount,
+        category,
+        status
+    }
+
     if(type==="income") {
-        console.log("will create new income")
+        addTransaction("/incomes",transaction)
     } else {
-        console.log("will create new expense")
+        addTransaction("/expenses",transaction)
     }
 
 }
@@ -52,6 +64,7 @@ const handleChange=(e)=>{
             <>
             <label htmlFor="category" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Category</label>
             <select name="category" id="category" value={formvalues.category} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
+                {formvalues.category===""?<option hidden>Select Category..</option>:""}
                 {incomeCategories.map((item,index)=>{
                     return <option value={item} key={index}>{item}</option>
                 })}
@@ -65,6 +78,7 @@ const handleChange=(e)=>{
             <>
             <label htmlFor="category" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Category</label>
             <select name="category" id="category" value={formvalues.category} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
+                {formvalues.category===""?<option hidden>Select Category..</option>:""}
                 {expenseCategories.map((item,index)=>{
                     return <option value={item} key={index}>{item}</option>
                 })}
