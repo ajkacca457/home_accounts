@@ -18,13 +18,15 @@ const EditForm = () => {
 
     const [formvalues,setFormValues]= useState(initialValues);
 
-    const {addTransaction,displayAlert}= useGlobalContext();
+    const {displayAlert, editIncome}= useGlobalContext();
 
     const navigate= useNavigate(); 
 
+    console.log(editIncome);
+
 const handleSubmit=(e)=>{
     e.preventDefault();
-    const {title,information,amount,category,status,type}= formvalues;
+    const {title,information,amount,category,status}= formvalues;
 
     if(!title||!information||!amount||!category||!status) {
         displayAlert("bg-red-400 text-white","please fill all the fields");

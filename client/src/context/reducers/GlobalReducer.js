@@ -3,7 +3,8 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR,
     EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR,
     DELETE_INCOME_BEGINS, DELETE_EXPENSE_BEGINS,
-    TRANSACTION_FETCH_BEGINS,TRANSACTION_FETCH_SUCCESS,TRANSACTION_FETCH_ERROR } from "../actions/actions";
+    TRANSACTION_FETCH_BEGINS,TRANSACTION_FETCH_SUCCESS,TRANSACTION_FETCH_ERROR, 
+    SET_INCOME_EDIT,SET_EXPENSE_EDIT } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -154,6 +155,21 @@ const GlobalReducer=(state,action)=>{
             }
         }
         
+        case SET_INCOME_EDIT:
+            const incomeToEdit= state.incomes.filter(item=>item._id===action.payload.id);
+            localStorage.setItem("income",JSON.stringify(incomeToEdit));
+            return {
+                ...state,
+                editIncome:incomeToEdit
+            }
+        case SET_EXPENSE_EDIT:
+            const expenseToEdit= state.expenses.filter(item=>item._id===action.payload.id);
+            localStorage.setItem("expense",JSON.stringify(expenseToEdit));
+            return {
+                ...state,
+                editExpense:expenseToEdit
+            }
+
         case DELETE_INCOME_BEGINS:
             return {
                 ...state,

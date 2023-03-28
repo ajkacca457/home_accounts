@@ -16,7 +16,8 @@ const GlobalContext= createContext();
 
 const user= localStorage.getItem("user");
 const token=localStorage.getItem("token");
-
+const income=localStorage.getItem("income");
+const expense= localStorage.getItem("expense");
 
 const initialState= {
     isLoading:false,
@@ -28,6 +29,8 @@ const initialState= {
     alertText:"",
     incomes:[],
     expenses:[],
+    editIncome:income?JSON.parse(income):"",
+    editExpense:expense?JSON.parse(expense):"",
     totalIncomes:0,
     totalExpenses:0,
     numberOfIncomePages:1,
@@ -139,12 +142,11 @@ const GlobalContextProvider=({children})=>{
     }   
 
     const setIncomeEdit=(id)=> {
-        // dispatch({type:SET_INCOME_EDIT,payload:{id}})
-        console.log(id);
+        dispatch({type:SET_INCOME_EDIT,payload:{id}})
     };
     const setExpenseEdit=(id)=> {
         console.log(id);
-        // dispatch({type:SET_EXPENSE_EDIT,payload:{id}})
+        dispatch({type:SET_EXPENSE_EDIT,payload:{id}})
     };    
 
 
