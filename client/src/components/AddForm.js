@@ -18,7 +18,7 @@ const AddForm = () => {
 
     const [formvalues,setFormValues]= useState(initialValues);
 
-    const {addTransaction,displayAlert}= useGlobalContext();
+    const {addTransaction,displayAlert, isLoading}= useGlobalContext();
 
     const navigate= useNavigate(); 
 
@@ -101,7 +101,7 @@ const handleChange=(e)=>{
             </>
             }
 
-            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Submit</button>
+            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" disabled={isLoading} >Submit</button>
 
     </form>
   )

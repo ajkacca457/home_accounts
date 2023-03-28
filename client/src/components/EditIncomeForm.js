@@ -5,7 +5,7 @@ import { useGlobalContext } from '../context/GlobalContext';
 import {useNavigate} from "react-router-dom";
 
 const EditIncomeForm = () => {
-    const {displayAlert, editIncome}= useGlobalContext();
+    const {displayAlert, editIncome, editTransaction,isLoading}= useGlobalContext();
 
     const initialValues= {
         title:editIncome[0]?editIncome[0].title:"",
@@ -14,7 +14,7 @@ const EditIncomeForm = () => {
         category:editIncome[0]?editIncome[0].category:"",
         status:editIncome[0]?editIncome[0].status:""
     }
-
+    
     const [formvalues,setFormValues]= useState(initialValues);
 
     const navigate= useNavigate(); 
@@ -36,7 +36,10 @@ const handleSubmit=(e)=>{
         status
     }
 
-
+    editTransaction(`/incomes/${editIncome[0]._id}`,transaction);
+    setTimeout(()=>{
+        navigate("/dashboard/incomes")
+    },1000)
 }
 
 const handleChange=(e)=>{
@@ -65,7 +68,8 @@ const handleChange=(e)=>{
                 <option value="incoming">incoming</option> 
             </select>
 
-            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Update</button>
+             <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" disabled={isLoading}>Update</button>   
+
         </form>
     </div>
   )

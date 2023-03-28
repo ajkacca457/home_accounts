@@ -6,9 +6,9 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     INCOME_FETCH_BEGIN, INCOME_FETCH_SUCCESS,
     EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR, INCOME_FETCH_ERROR, 
     DELETE_INCOME_BEGINS,DELETE_EXPENSE_BEGINS,
-    TRANSACTION_FETCH_BEGINS,TRANSACTION_FETCH_SUCCESS,TRANSACTION_FETCH_ERROR,
+    TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
-    EDIT_TRANSACTION_BEGIN,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR} from "./actions/actions";
+    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -61,6 +61,8 @@ const GlobalContextProvider=({children})=>{
     const clearLocalStorage=()=> {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        localStorage.removeItem("income");
+        localStorage.removeItem("expense");
     }
 
 
@@ -127,14 +129,14 @@ const GlobalContextProvider=({children})=>{
     }
 
     const addTransaction=async(url,item)=>{
-        dispatch({type:TRANSACTION_FETCH_BEGINS});
+        dispatch({type:TRANSACTION_ADD_BEGINS});
         try {
             await api.post(url,item);
-            dispatch({type:TRANSACTION_FETCH_SUCCESS});
+            dispatch({type:TRANSACTION_ADD_SUCCESS});
 
         } catch (error) {
             const {message}= error.response.data;
-            dispatch({type:TRANSACTION_FETCH_ERROR,payload:{message}})
+            dispatch({type:TRANSACTION_ADD_ERROR,payload:{message}})
         }
 
         clearAlert();
@@ -145,12 +147,11 @@ const GlobalContextProvider=({children})=>{
         dispatch({type:SET_INCOME_EDIT,payload:{id}})
     };
     const setExpenseEdit=(id)=> {
-        console.log(id);
         dispatch({type:SET_EXPENSE_EDIT,payload:{id}})
     };    
 
-    const editTranction= async(url,item)=> {
-        dispatch({type:EDIT_TRANSACTION_BEGIN});
+    const editTransaction= async(url,item)=> {
+        dispatch({type:EDIT_TRANSACTION_BEGINS});
         try {
             await api.patch(url,item);
             dispatch({type:EDIT_TRANSACTION_SUCCESS})
@@ -184,7 +185,7 @@ const GlobalContextProvider=({children})=>{
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,
         loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense,
-        addTransaction, setIncomeEdit, setExpenseEdit}}>
+        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction}}>
             {children}
         </GlobalContext.Provider>
     )

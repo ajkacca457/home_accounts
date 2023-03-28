@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 const EditExpenseForm = () => {
 
-    const {displayAlert, editExpense}= useGlobalContext();
+    const {displayAlert, editExpense, editTransaction, isLoading}= useGlobalContext();
 
     const navigate= useNavigate(); 
 
@@ -37,6 +37,11 @@ const handleSubmit=(e)=>{
         category,
         status
     }
+
+    editTransaction(`/expenses/${editExpense[0]._id}`,transaction);
+    setTimeout(()=>{
+        navigate("/dashboard/expenses")
+    },1000)
 }
 
 const handleChange=(e)=>{
@@ -65,7 +70,7 @@ const handleChange=(e)=>{
                 <option value="due">due</option> 
             </select>
 
-            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Update</button>
+            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" disabled={isLoading} >Update</button>
         </form>
     </div>
   )

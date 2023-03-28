@@ -3,9 +3,9 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     INCOME_FETCH_BEGIN,INCOME_FETCH_SUCCESS,INCOME_FETCH_ERROR,
     EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR,
     DELETE_INCOME_BEGINS, DELETE_EXPENSE_BEGINS,
-    TRANSACTION_FETCH_BEGINS,TRANSACTION_FETCH_SUCCESS,TRANSACTION_FETCH_ERROR, 
+    TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR, 
     SET_INCOME_EDIT,SET_EXPENSE_EDIT,
-    EDIT_TRANSACTION_BEGIN,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR } from "../actions/actions";
+    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -129,14 +129,14 @@ const GlobalReducer=(state,action)=>{
                 alertText:action.payload.message
             }
 
-        case TRANSACTION_FETCH_BEGINS:
+        case TRANSACTION_ADD_BEGINS:
             return {
                 ...state,
                 isLoading:true,
                 showAlert:false
             }
 
-        case TRANSACTION_FETCH_SUCCESS: {
+        case TRANSACTION_ADD_SUCCESS: {
             return {
                 ...state,
                 isLoading:false,
@@ -146,7 +146,7 @@ const GlobalReducer=(state,action)=>{
 
             }
         }
-        case TRANSACTION_FETCH_ERROR: {
+        case TRANSACTION_ADD_ERROR: {
             return {
                 ...state,
                 isLoading:false,
@@ -171,6 +171,31 @@ const GlobalReducer=(state,action)=>{
                 editExpense:expenseToEdit
             }
 
+        case EDIT_TRANSACTION_BEGINS:
+            return {
+                ...state,
+                isLoading:true,
+                showAlert:false
+            }
+    
+        case EDIT_TRANSACTION_SUCCESS: {
+            return {
+                ...state,
+                isLoading:false,
+                showAlert:true,
+                alertClasses:"bg-green-400 text-white",
+                alertText:"Transaction Updated"
+            }
+        }
+        case EDIT_TRANSACTION_ERROR: {
+            return {
+                ...state,
+                isLoading:false,
+                showAlert:true,
+                alertClasses:"bg-red-400 text-white",
+                alertText:action.payload.message
+            }
+        }
 
         case DELETE_INCOME_BEGINS:
             return {
