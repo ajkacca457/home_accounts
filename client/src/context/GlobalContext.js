@@ -7,8 +7,8 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     EXPENSE_FETCH_BEGIN,EXPENSE_FETCH_SUCCESS,EXPENSE_FETCH_ERROR, INCOME_FETCH_ERROR, 
     DELETE_INCOME_BEGINS,DELETE_EXPENSE_BEGINS,
     TRANSACTION_FETCH_BEGINS,TRANSACTION_FETCH_SUCCESS,TRANSACTION_FETCH_ERROR,
-    SET_INCOME_EDIT, 
-    SET_EXPENSE_EDIT} from "./actions/actions";
+    SET_INCOME_EDIT, SET_EXPENSE_EDIT,
+    EDIT_TRANSACTION_BEGIN,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -149,6 +149,17 @@ const GlobalContextProvider=({children})=>{
         dispatch({type:SET_EXPENSE_EDIT,payload:{id}})
     };    
 
+    const editTranction= async(url,item)=> {
+        dispatch({type:EDIT_TRANSACTION_BEGIN});
+        try {
+            await api.patch(url,item);
+            dispatch({type:EDIT_TRANSACTION_SUCCESS})
+        } catch (error) {
+            const {message}= error.response.data;
+            dispatch({type:EDIT_TRANSACTION_ERROR,payload:{message}})
+        }
+        clearAlert();
+    }
 
     const deleteIncome=async(id)=>{
         dispatch({type:DELETE_INCOME_BEGINS});

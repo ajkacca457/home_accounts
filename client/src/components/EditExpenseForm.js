@@ -6,23 +6,20 @@ import {useNavigate} from "react-router-dom";
 
 const EditExpenseForm = () => {
 
-    const initialValues= {
-        type:"income",
-        title:"",
-        information:"",
-        amount:"",
-        category:"",
-        status:""
-    }
-
-
-    const [formvalues,setFormValues]= useState(initialValues);
-
-    const {displayAlert, editIncome}= useGlobalContext();
+    const {displayAlert, editExpense}= useGlobalContext();
 
     const navigate= useNavigate(); 
 
-    console.log(editIncome);
+    const initialValues= {
+        title:editExpense[0]?editExpense[0].title:"",
+        information:editExpense[0]?editExpense[0].information:"",
+        amount:editExpense[0]?editExpense[0].amount:"",
+        category:editExpense[0]?editExpense[0].category:"",
+        status:editExpense[0]?editExpense[0].status:""
+    }
+
+    const [formvalues,setFormValues]= useState(initialValues);
+
 
 const handleSubmit=(e)=>{
     e.preventDefault();
@@ -40,8 +37,6 @@ const handleSubmit=(e)=>{
         category,
         status
     }
-
-
 }
 
 const handleChange=(e)=>{
@@ -70,7 +65,7 @@ const handleChange=(e)=>{
                 <option value="due">due</option> 
             </select>
 
-            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Submit</button>
+            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Update</button>
         </form>
     </div>
   )

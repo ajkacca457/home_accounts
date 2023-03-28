@@ -1,28 +1,23 @@
 import React, { useState } from 'react'
 import FormRow from './FormRow';
-import { incomeCategories,expenseCategories } from '../utilites/linkData';
+import { incomeCategories } from '../utilites/linkData';
 import { useGlobalContext } from '../context/GlobalContext';
 import {useNavigate} from "react-router-dom";
 
-const EditForm = () => {
+const EditIncomeForm = () => {
+    const {displayAlert, editIncome}= useGlobalContext();
 
     const initialValues= {
-        type:"income",
-        title:"",
-        information:"",
-        amount:"",
-        category:"",
-        status:""
+        title:editIncome[0]?editIncome[0].title:"",
+        information:editIncome[0]?editIncome[0].information:"",
+        amount:editIncome[0]?editIncome[0].amount:"",
+        category:editIncome[0]?editIncome[0].category:"",
+        status:editIncome[0]?editIncome[0].status:""
     }
-
 
     const [formvalues,setFormValues]= useState(initialValues);
 
-    const {displayAlert, editIncome}= useGlobalContext();
-
     const navigate= useNavigate(); 
-
-    console.log(editIncome);
 
 const handleSubmit=(e)=>{
     e.preventDefault();
@@ -70,10 +65,10 @@ const handleChange=(e)=>{
                 <option value="incoming">incoming</option> 
             </select>
 
-            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Submit</button>
+            <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" >Update</button>
         </form>
     </div>
   )
 }
 
-export default EditForm;
+export default EditIncomeForm;
