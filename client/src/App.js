@@ -5,7 +5,7 @@ import IncomeList from './pages/IncomeList';
 import ExpenseList from './pages/ExpenseList';
 import Error from './pages/Error';
 import AddTransaction from './pages/AddTransaction';
-import EditIncomeForm from './components/EditIncomeForm';
+import EditForm from './components/EditForm';
 import SharedLayout from './components/SharedLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
@@ -25,8 +25,8 @@ function App() {
             <Route path='incomes' element={<IncomeList/>}/>
             <Route path='expenses' element={<ExpenseList/>}/>
             <Route path='add-transaction' element={<AddTransaction/>}/>
-            <Route path='edit-income/:id' element={<EditIncomeForm/>}/>
-            <Route path='edit-expense/:id' element={<EditIncomeForm/>}/>    
+            <Route path='edit-income/:id' element={<EditForm/>}/>
+            <Route path='edit-expense/:id' element={<EditForm/>}/>    
             
           </Route>
           <Route path="/" index element={<Home/>}/>

@@ -4,7 +4,7 @@ import { incomeCategories,expenseCategories } from '../utilites/linkData';
 import { useGlobalContext } from '../context/GlobalContext';
 import {useNavigate} from "react-router-dom";
 
-const EditIncomeForm = () => {
+const EditForm = () => {
 
     const initialValues= {
         type:"income",
@@ -74,4 +74,4 @@ const handleChange=(e)=>{
   )
 }
 
-export default EditIncomeForm;
+export default EditForm;
