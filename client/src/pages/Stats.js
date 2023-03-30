@@ -25,12 +25,12 @@ const Stats = () => {
 
   return (
     <div>
-        <div className="income-stats bg-green-300">
+        <div className="income-stats">
             {IncomeAmount}
 
             {incomeCategoryStats && Object.values(incomeCategoryStats).map((item,index)=>{
                 return (
-                  <StatCard {...item}/>
+                  <StatCard {...item} bgclass={"bg-green-300"} />
                 )
             })}
 
