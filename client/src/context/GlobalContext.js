@@ -8,8 +8,10 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     DELETE_INCOME_BEGINS,DELETE_EXPENSE_BEGINS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
-    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR} from "./actions/actions";
+    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
+import axios from "axios";
 
 const GlobalContext= createContext();
 
@@ -29,6 +31,8 @@ const initialState= {
     alertText:"",
     incomes:[],
     expenses:[],
+    expenseStats:"",
+    incomeStats:"",
     editIncome:income?JSON.parse(income):"",
     editExpense:expense?JSON.parse(expense):"",
     totalIncomes:0,
@@ -182,10 +186,25 @@ const GlobalContextProvider=({children})=>{
         }
     }
 
+    const getStats=async()=>{
+        dispatch({type:STATS_FETCH_BEGINS});
+        try {
+            const response= await Promise.all([api.get("/incomes/income-stats"),api.get("/expenses/expense-stats")]);
+            const statsIncome=response[0].data;
+            const statsExpense= response[1].data;
+            dispatch({type:STATS_FETCH_SUCCESS,payload:{statsIncome,statsExpense}}) 
+        } catch (error) {
+            const {message}= error.response.data;
+            dispatch({type:EXPENSE_FETCH_ERROR,payload:{message}});
+        }
+        clearAlert();
+    }
+
+
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,
         loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense,
-        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction}}>
+        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats}}>
             {children}
         </GlobalContext.Provider>
     )

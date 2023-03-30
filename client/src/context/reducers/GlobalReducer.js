@@ -5,7 +5,8 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     DELETE_INCOME_BEGINS, DELETE_EXPENSE_BEGINS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR, 
     SET_INCOME_EDIT,SET_EXPENSE_EDIT,
-    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR } from "../actions/actions";
+    EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -128,7 +129,30 @@ const GlobalReducer=(state,action)=>{
                 alertClasses:"bg-red-400 text-white",
                 alertText:action.payload.message
             }
-
+        case STATS_FETCH_BEGINS: 
+            return {
+                ...state,
+                isLoading:true,
+                showAlert:false
+            }
+        
+        case STATS_FETCH_SUCCESS: 
+            return {
+                ...state,
+                isLoading:false,
+                incomeStats:action.payload.statsIncome,
+                expenseStats:action.payload.statsExpense
+            }
+        
+        case STATS_FETCH_ERROR:
+                return {
+                    ...state,
+                    isLoading:false,
+                    showAlert:true,
+                    alertClasses:"bg-red-400 text-white",
+                    alertText:action.payload.message
+                }
+                
         case TRANSACTION_ADD_BEGINS:
             return {
                 ...state,
