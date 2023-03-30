@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context/GlobalContext'
 import Loading from "../components/Loading";
+import StatCard from '../components/StatCard';
 
 const Stats = () => {
 
@@ -10,8 +11,13 @@ const Stats = () => {
     getStats();
   },[])
 
+  useEffect(()=>{
+    console.log(incomeStats);
+  },[])
 
-  console.log(incomeStats,expenseStats);
+  const {categoryStats:incomeCategoryStats,statusStats:incomeStatusStats,Amount:IncomeAmount}=incomeStats;
+  const {categoryStats:expenseCategoryStats,statusStats:expenseStatusStats,Amount:ExpenseAmount}=expenseStats;
+  
 
   if(isLoading) {
     return <Loading></Loading>
@@ -19,7 +25,39 @@ const Stats = () => {
 
   return (
     <div>
-      Will Show all the status
+        <div className="income-stats bg-green-300">
+            {IncomeAmount}
+
+            {incomeCategoryStats && Object.values(incomeCategoryStats).map((item,index)=>{
+                return (
+                  <StatCard {...item}/>
+                )
+            })}
+
+          {incomeStatusStats && Object.values(incomeStatusStats).map((item,index)=>{
+                return (
+                  <StatCard {...item}/>
+                )
+            })}
+
+        </div>
+
+        <div className="income-stats bg-red-300">
+            {ExpenseAmount}
+
+            {expenseCategoryStats && Object.values(expenseCategoryStats).map((item,index)=>{
+                return (
+                  <StatCard {...item}/>
+                )
+            })}
+
+            {expenseStatusStats && Object.values(expenseStatusStats).map((item,index)=>{
+                return (
+                  <StatCard {...item}/>
+                )
+            })}
+
+        </div>
     </div>
   )
 }
