@@ -2,7 +2,6 @@ import Expense from "../models/Expense.js"
 import AsyncHandler from "../middlewares/AsyncHandler.js";
 import CustomError from "../utils/CustomError.js";
 import { StatusCodes } from "http-status-codes";
-import mongoose from "mongoose";
 // for all expenses
 
 export const getExpenses=AsyncHandler(async (req,res,next)=>{
@@ -11,21 +10,9 @@ export const getExpenses=AsyncHandler(async (req,res,next)=>{
 
 // for expense statistics
 
-export const getExpenseStats=async(req,res,next)=>{
-  
-    const expensesStats= await Expense.aggregate([
-        {$match:{createdBy:mongoose.Types.ObjectId(req.user.userId)}},
-        {$group:{
-            _id:{status:"$status",category:"$category"},
-        }}
-    ])
-
-
-    res.status(200).json({
-        expensesStats,
-        message:"will return stats of all expenses"
-    })
-}
+export const getExpenseStats=AsyncHandler(async(req,res,next)=>{
+    res.status(StatusCodes.OK).json(res.advancedStats); 
+})
 
 //for single expense 
 export const getSingleExpense=AsyncHandler(async (req,res,next)=>{

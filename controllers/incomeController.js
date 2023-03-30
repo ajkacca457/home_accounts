@@ -12,9 +12,7 @@ export const getIncomes=AsyncHandler(async (req,res,next)=>{
 // for income statistics
 
 export const getIncomeStats=AsyncHandler(async (req,res,next)=>{
-    res.status(StatusCodes.OK).json({
-        message:"will return stats of all incomes"
-    })
+    res.status(StatusCodes.OK).json(res.advancedStats)
 })
 
 //for single income 
