@@ -25,35 +25,52 @@ const Stats = () => {
 
   return (
     <div>
-        <div className="income-stats">
-            {IncomeAmount}
-
+        <div className="income-stats grid grid-cols-12 gap-x-[10px]">
+            <div className='col-span-full flex justify-between'>
+              <h1>Income category statistics</h1>
+              <h1>{IncomeAmount}</h1>
+            </div>
+            <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
             {incomeCategoryStats && Object.values(incomeCategoryStats).map((item,index)=>{
                 return (
-                  <StatCard {...item} bgclass={"bg-green-300"} />
+                  <StatCard {...item} bgclass={"bg-green-300"} key={index}/>
                 )
             })}
+            </div>
 
-          {incomeStatusStats && Object.values(incomeStatusStats).map((item,index)=>{
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700 col-span-full" />
+
+            <div className='col-span-full flex justify-between'>
+              <h1>Income status statistics</h1>
+              <h1>{IncomeAmount}</h1>
+            </div>
+
+            <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
+            {incomeStatusStats && Object.values(incomeStatusStats).map((item,index)=>{
                 return (
-                  <StatCard {...item}/>
+                  <StatCard {...item} bgclass={"bg-green-300"} key={index}/>
                 )
             })}
+            </div>
 
         </div>
 
-        <div className="income-stats bg-red-300">
-            {ExpenseAmount}
+        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
+        <div className="expenese-stats grid grid-cols-12 gap-x-[10px]">
+
+            <h1 className='col-span-full'>{ExpenseAmount}</h1>
 
             {expenseCategoryStats && Object.values(expenseCategoryStats).map((item,index)=>{
                 return (
-                  <StatCard {...item}/>
+                  <StatCard {...item} bgclass={"bg-red-300"} key={index}/>
                 )
             })}
+            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
 
             {expenseStatusStats && Object.values(expenseStatusStats).map((item,index)=>{
                 return (
-                  <StatCard {...item}/>
+                  <StatCard {...item} bgclass={"bg-red-400"} key={index}/>
                 )
             })}
 
