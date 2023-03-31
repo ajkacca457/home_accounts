@@ -25,14 +25,22 @@ const AdvancedStats=(model)=>async(req,res,next)=>{
 
     const {statusInfo, categoryInfo,totalAmount}= modelStats[0];
 
+    console.log(totalAmount);
+
     const categoryStats= CommonReducer(categoryInfo);
     const statusStats= CommonReducer(statusInfo);
-    const {Amount}= totalAmount[0]
+
+    let Amount;
+    if(totalAmount.length<=0) {
+        Amount=0 
+    } else {
+        Amount= totalAmount[0].Amount;
+    }
 
     res.advancedStats= {
         categoryStats,
         statusStats,
-        Amount,
+        Amount:Amount||0,
     }
 
     next();
