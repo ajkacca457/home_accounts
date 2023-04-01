@@ -1,6 +1,13 @@
 import {FcMoneyTransfer} from "react-icons/fc";
-import {GiProfit,GiMoneyStack,GiPayMoney} from "react-icons/gi";
+import {GiProfit,GiMoneyStack,GiPayMoney, GiReceiveMoney,GiShoppingCart} from "react-icons/gi";
 import {TbPigMoney} from "react-icons/tb";
+import {BsBank2, BsHouseUpFill} from "react-icons/bs"
+import {RiLoginBoxFill,RiFilmFill} from "react-icons/ri";
+import {MdHealthAndSafety} from "react-icons/md";
+import {AiOutlineSafety} from "react-icons/ai";
+import {ImBooks} from "react-icons/im";
+import {FaUmbrellaBeach,FaThumbsUp} from "react-icons/fa";
+import {TbAlarmFilled} from "react-icons/tb";
 
 export const returnChartData=(category)=>{
 
@@ -23,7 +30,7 @@ export const returnIncomeCardData=(item={})=>{
            title:"Investment",
            amount:item.Investment?item.Investment.amount:0,
            count:item.Investment?item.Investment.count:0,
-           icon: <FcMoneyTransfer/>
+           icon: <GiPayMoney/>
         },
         {
             id:2,
@@ -44,7 +51,7 @@ export const returnIncomeCardData=(item={})=>{
             title:"Interest",
             amount:item.Interest?item.Interest.amount:0,
             count:item.Interest?item.Interest.count:0,
-            icon: <GiPayMoney/>
+            icon: <BsBank2/>
          },
          {
             id:5,
@@ -66,49 +73,49 @@ export const returnExpenseCardData=(item={})=>{
            title:"Groceries",
            amount:item.Groceries?item.Groceries.amount:0,
            count:item.Groceries?item.Groceries.count:0,
-           icon: <FcMoneyTransfer/>
+           icon: <GiShoppingCart/>
         },
         {
             id:2,
             title:"Health",
             amount:item.Health?item.Health.amount:0,
             count:item.Health?item.Health.count:0,
-            icon: <GiProfit/>
+            icon: <MdHealthAndSafety/>
          },
          {
             id:3,
             title:"Rent",
             amount:item.Rent?item.Rent.amount:0,
             count:item.Rent?item.Rent.count:0,
-            icon: <GiMoneyStack/>
+            icon: <BsHouseUpFill/>
          },
          {
             id:4,
             title:"Insurance",
             amount:item.Insurance?item.Insurance.amount:0,
             count:item.Insurance?item.Insurance.count:0,
-            icon: <GiPayMoney/>
+            icon: <AiOutlineSafety/>
          },
          {
             id:5,
             title:"Entertainment",
             amount:item.Entertainment?item.Entertainment.amount:0,
             count:item.Entertainment?item.Entertainment.count:0,
-            icon: <TbPigMoney/>
+            icon: <RiFilmFill/>
          },
          {
             id:6,
             title:"Education",
             amount:item.Education?item.Education.amount:0,
             count:item.Education?item.Education.count:0,
-            icon: <TbPigMoney/>
+            icon: <ImBooks/>
          },
          {
             id:7,
             title:"Miscellaneous",
             amount:item.Miscellaneous?item.Miscellaneous.amount:0,
             count:item.Miscellaneous?item.Miscellaneous.count:0,
-            icon: <TbPigMoney/>
+            icon: <FaUmbrellaBeach/>
          },
     ]
 
@@ -126,14 +133,14 @@ export const returnStatsCard=(type,item={})=>{
                 title:"Incoming",
                 amount:item.incoming?item.incoming.amount:0,
                 count:item.incoming?item.incoming.count:0,
-                icon: <FcMoneyTransfer/>
+                icon: <RiLoginBoxFill/>
             },
             {
                 id:2,
                 title:"Received",
                 amount:item.received?item.received.amount:0,
                 count:item.Health?item.Health.count:0,
-                icon: <GiProfit/>
+                icon: <GiReceiveMoney/>
             }
         ]
     } else {
@@ -144,14 +151,14 @@ export const returnStatsCard=(type,item={})=>{
                 title:"Paid",
                 amount:item.paid?item.paid.amount:0,
                 count:item.paid?item.paid.count:0,
-                icon: <FcMoneyTransfer/>
+                icon: <FaThumbsUp/>
             },
             {
                 id:2,
                 title:"Due",
                 amount:item.due?item.due.amount:0,
                 count:item.due?item.due.count:0,
-                icon: <GiProfit/>
+                icon: <TbAlarmFilled/>
             }
         ]        
     }

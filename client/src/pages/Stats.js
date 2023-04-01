@@ -24,7 +24,6 @@ const Stats = () => {
   const isStats= returnStatsCard("income",incomeStatusStats);
   const esStats= returnStatsCard("expense",expenseStatusStats);
 
-  console.log(isStats[0].icon);
 
   const incomeCategoryData=returnChartData(incomeCategoryStats);
   const incomeStatusData=returnChartData(incomeStatusStats);
@@ -44,9 +43,9 @@ const Stats = () => {
               <h2 className='text-lg'>Total : {IncomeAmount}{"£"}</h2>
             </div>
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {icStats && icStats.map((item,index)=>{
+            {icStats && icStats.map((item)=>{
                 return (
-                  <StatCard {...item} key={index}/>
+                  <StatCard {...item} key={item.id}/>
                 )
             })}
             </div>
@@ -84,9 +83,9 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {ecStats && ecStats.map((item,index)=>{
+            {ecStats && ecStats.map((item)=>{
                 return (
-                  <StatCard {...item} key={index}/>
+                  <StatCard {...item} key={item.id}/>
                 )
             })}
             </div>
@@ -102,9 +101,9 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {esStats && esStats.map((item,index)=>{
+            {esStats && esStats.map((item)=>{
                 return (
-                  <StatCard {...item} key={index}/>
+                  <StatCard {...item} key={item.id}/>
                 )
             })}
             </div>
