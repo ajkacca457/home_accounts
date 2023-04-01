@@ -5,6 +5,7 @@ import StatCard from '../components/StatCard';
 import PieChart3d from '../components/Pie3d';
 import PieChart2d from '../components/Pie2d';
 import BarChart2d from '../components/Bar2d';
+import DoughnutChart2d from '../components/Doughnut';
 import { returnChartData } from '../utilites/utilsFunc';
 
 const Stats = () => {
@@ -22,6 +23,8 @@ const Stats = () => {
   const incomeCategoryData=returnChartData(incomeCategoryStats);
   const incomeStatusData=returnChartData(incomeStatusStats);
   const expenseCategoryData=returnChartData(expenseCategoryStats);
+  const expenseStatusData=returnChartData(expenseStatusStats);
+
 
   if(isLoading) {
     return <Loading></Loading>
@@ -99,6 +102,8 @@ const Stats = () => {
                 )
             })}
             </div>
+
+            {expenseStatusData.length>0?<DoughnutChart2d data={expenseStatusData}></DoughnutChart2d>:<h1 className='col-span-full text-3xl text-center'>No expenses so far!!Statistic not available.</h1>}
 
         </div>
     </div>
