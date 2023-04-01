@@ -25,8 +25,6 @@ const AdvancedStats=(model)=>async(req,res,next)=>{
 
     const {statusInfo, categoryInfo,totalAmount}= modelStats[0];
 
-    console.log(totalAmount);
-
     const categoryStats= CommonReducer(categoryInfo);
     const statusStats= CommonReducer(statusInfo);
 
