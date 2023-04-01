@@ -29,7 +29,6 @@ const chartConfigs = {
       // Chart Configuration
       chart: {
         //Set the chart caption
-        paletteColors: '#1aaf5d,#ff0000',
         caption: "Expenses by category",
         theme: "fusion"
       },

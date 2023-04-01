@@ -19,6 +19,8 @@ const Stats = () => {
   const {categoryStats:incomeCategoryStats,statusStats:incomeStatusStats,Amount:IncomeAmount}=incomeStats;
   const {categoryStats:expenseCategoryStats,statusStats:expenseStatusStats,Amount:ExpenseAmount}=expenseStats;
   
+  
+    console.log(incomeCategoryStats);
 
   const incomeCategoryData=returnChartData(incomeCategoryStats);
   const incomeStatusData=returnChartData(incomeStatusStats);

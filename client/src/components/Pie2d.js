@@ -30,7 +30,6 @@ const chartConfigs = {
       chart: {
         //Set the chart caption
         caption: "Income source percentage",
-        paletteColors: '#1aaf5d,#ff0000',
         theme: "fusion"
       },
       // Chart Data
