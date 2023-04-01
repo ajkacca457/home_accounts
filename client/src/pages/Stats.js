@@ -6,7 +6,7 @@ import PieChart3d from '../components/Pie3d';
 import PieChart2d from '../components/Pie2d';
 import BarChart2d from '../components/Bar2d';
 import DoughnutChart2d from '../components/Doughnut';
-import { returnChartData } from '../utilites/utilsFunc';
+import { returnChartData,returnIncomeCardData, returnExpenseCardData, returnStatsCard } from '../utilites/utilsFunc';
 
 const Stats = () => {
 
@@ -19,7 +19,12 @@ const Stats = () => {
   const {categoryStats:incomeCategoryStats,statusStats:incomeStatusStats,Amount:IncomeAmount}=incomeStats;
   const {categoryStats:expenseCategoryStats,statusStats:expenseStatusStats,Amount:ExpenseAmount}=expenseStats;
   
-  
+  const icStats= returnIncomeCardData(incomeCategoryStats);
+  const ecStats= returnExpenseCardData(expenseCategoryStats);
+  const isStats= returnStatsCard("income",incomeStatusStats);
+  const esStats= returnStatsCard("expense",expenseStatusStats);
+
+
   const incomeCategoryData=returnChartData(incomeCategoryStats);
   const incomeStatusData=returnChartData(incomeStatusStats);
   const expenseCategoryData=returnChartData(expenseCategoryStats);
@@ -38,7 +43,7 @@ const Stats = () => {
               <h2 className='text-lg'>Total : {IncomeAmount}{"£"}</h2>
             </div>
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {incomeCategoryStats && Object.values(incomeCategoryStats).map((item,index)=>{
+            {icStats && icStats.map((item,index)=>{
                 return (
                   <StatCard {...item} bgclass={"bg-green-400"} key={index}/>
                 )
@@ -56,7 +61,7 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {incomeStatusStats && Object.values(incomeStatusStats).map((item,index)=>{
+            {isStats && isStats.map((item,index)=>{
                 return (
                   <StatCard {...item} bgclass={"bg-green-400"} key={index} icon={<div>hello</div>}/>
                 )
@@ -78,7 +83,7 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {expenseCategoryStats && Object.values(expenseCategoryStats).map((item,index)=>{
+            {ecStats && ecStats.map((item,index)=>{
                 return (
                   <StatCard {...item} bgclass={"bg-red-400"} key={index}/>
                 )
@@ -96,7 +101,7 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {expenseStatusStats && Object.values(expenseStatusStats).map((item,index)=>{
+            {esStats && esStats.map((item,index)=>{
                 return (
                   <StatCard {...item} bgclass={"bg-red-400"} key={index}/>
                 )
