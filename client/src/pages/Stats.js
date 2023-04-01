@@ -24,6 +24,7 @@ const Stats = () => {
   const isStats= returnStatsCard("income",incomeStatusStats);
   const esStats= returnStatsCard("expense",expenseStatusStats);
 
+  console.log(isStats[0].icon);
 
   const incomeCategoryData=returnChartData(incomeCategoryStats);
   const incomeStatusData=returnChartData(incomeStatusStats);
@@ -45,7 +46,7 @@ const Stats = () => {
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
             {icStats && icStats.map((item,index)=>{
                 return (
-                  <StatCard {...item} bgclass={"bg-green-400"} key={index}/>
+                  <StatCard {...item} key={index}/>
                 )
             })}
             </div>
@@ -61,9 +62,9 @@ const Stats = () => {
             </div>
 
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
-            {isStats && isStats.map((item,index)=>{
+            {isStats && isStats.map((item)=>{
                 return (
-                  <StatCard {...item} bgclass={"bg-green-400"} key={index} icon={<div>hello</div>}/>
+                  <StatCard {...item} key={item.id}/>
                 )
             })}
             </div>
@@ -85,7 +86,7 @@ const Stats = () => {
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
             {ecStats && ecStats.map((item,index)=>{
                 return (
-                  <StatCard {...item} bgclass={"bg-red-400"} key={index}/>
+                  <StatCard {...item} key={index}/>
                 )
             })}
             </div>
@@ -103,7 +104,7 @@ const Stats = () => {
             <div className='col-span-full grid grid-cols-12 gap-x-[10px]'>
             {esStats && esStats.map((item,index)=>{
                 return (
-                  <StatCard {...item} bgclass={"bg-red-400"} key={index}/>
+                  <StatCard {...item} key={index}/>
                 )
             })}
             </div>
