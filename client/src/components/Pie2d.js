@@ -37,7 +37,7 @@ const chartConfigs = {
     }
   };
 
-    return (<ReactFC {...chartConfigs}  className="col-span-full px-2"/>)
+    return (<ReactFC {...chartConfigs}  className="col-span-full px-2 my-4"/>)
 }
 
 export default PieChart2d;
