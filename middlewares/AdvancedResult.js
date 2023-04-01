@@ -11,10 +11,11 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
 
     let QueryStr= JSON.stringify(reqQuery);
 
-    QueryStr= QueryStr.replace(/\b(gt|lt|gte|lte|in)\b/, (match)=> {
+    QueryStr= QueryStr.replace(/\b(gt|lt|gte|lte|in)\b/g, (match)=> {
         return `$${match}`
     })
 
+    
     let finalQuery= {...JSON.parse(QueryStr),createdBy:req.user.userId};
 
     query= model.find(finalQuery);
