@@ -30,7 +30,8 @@ const chartConfigs = {
       chart: {
         //Set the chart caption
         caption: "Expenses by category",
-        theme: "fusion"
+        theme: "fusion",
+        paletteColors:'#10B981,#EF4444'
       },
       // Chart Data
       data: data

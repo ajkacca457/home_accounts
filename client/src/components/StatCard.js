@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StatCard = ({title,amount,count,icon}) => {
+const StatCard = ({title,amount,count,icon,bgcolor}) => {
 
   return (
     <div className="p-2 hover:scale-105 duration-500 col-span-4">
@@ -11,7 +11,7 @@ const StatCard = ({title,amount,count,icon}) => {
         <p className="text-lg font-semibold text-gray-400">Number of transaction: {count}</p>
       </div>
       <div
-        className={`bg-red-300 from-orange-500 to-orange-400 w-24 h-24  rounded-full shadow-2xl border-white  border-dashed border-2  flex justify-center items-center`}>
+        className={`${bgcolor} w-24 h-24  rounded-full shadow-2xl border-white  border-dashed border-2  flex justify-center items-center`}>
         <div className='text-4xl text-white'>
           {icon}
         </div>
