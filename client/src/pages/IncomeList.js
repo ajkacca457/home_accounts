@@ -3,6 +3,7 @@ import { useGlobalContext } from '../context/GlobalContext'
 import Loading from "../components/Loading";
 import IncomeCard from '../components/IncomeCard';
 import CardTags from '../components/CardTags';
+import Filter from '../components/Filter';
 
 const IncomeList = () => {
   const {isLoading,incomes,getIncomes, totalIncomes}= useGlobalContext();
@@ -23,6 +24,8 @@ const IncomeList = () => {
 
   return (
     <div className='mt-10'>
+      <Filter isIncome={true}/>
+
       <CardTags info={{cardClass:"bg-indigo-500",totalIncomes}}/>
       {incomes && incomes.map((item)=>{
         return (
