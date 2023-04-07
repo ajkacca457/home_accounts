@@ -109,10 +109,11 @@ const GlobalContextProvider=({children})=>{
     }
 
     const getIncomes=async()=>{
+        const {filterStatus,filterCategory}= state;
 
         dispatch({type:INCOME_FETCH_BEGIN});
         try {
-            const response= await api.get(`/incomes`);
+            const response= await api.get(`/incomes?status=${filterStatus}&category=${filterCategory}`);
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:INCOME_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {
