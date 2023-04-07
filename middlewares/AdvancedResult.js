@@ -15,8 +15,27 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
         return `$${match}`
     })
 
-    
-    let finalQuery= {...JSON.parse(QueryStr),createdBy:req.user.userId};
+    let adjustedQuery=JSON.parse(QueryStr);
+
+
+    if(req.query.status) {
+    if(req.query.status==="all") {
+        delete adjustedQuery.status;
+    } else {
+        adjustedQuery.status=req.query.status;
+    }
+    }
+
+    if(req.query.category) {
+    if(req.query.category==="all") {
+        delete adjustedQuery.category;
+    } else {
+        adjustedQuery.category=req.query.category;
+    }
+    }
+
+
+    let finalQuery= {...adjustedQuery,createdBy:req.user.userId}; 
 
     query= model.find(finalQuery);
 

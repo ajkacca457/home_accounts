@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FormRow from "./FormRow";
 import { incomeCategories,expenseCategories } from '../utilites/linkData';
+import { useGlobalContext } from '../context/GlobalContext';
 
 
 
@@ -8,44 +9,46 @@ import { incomeCategories,expenseCategories } from '../utilites/linkData';
 const Filter = ({isIncome}) => {
 
     const [values,setFormValues]= useState({
-      search:"",
+      title:"",
       category:"",
       status:""
     })
 
+
+    const {setQuery}= useGlobalContext();
+
     const onHandleChange=(e)=> {
-      const {search,category,status}=values;
+      const {title,category,status}=values;
       setFormValues({...values,[e.target.name]:e.target.value});
+      
       let query="?";
-      if(search!=="") {
-        query =`search=${search}`;
+
+      if(title!=="") {
+        query =`${query}title=${title}`;
+      } else {
+        query="";
       }
-      if(category) {
-        if(search!=="") {
+      if(category!=="") {
           query=`${query}&category=${category}`;
-        } else {
-          query=`category=${category}`;
-        }
-      }
+          if(title==="") {
+            query=`?category=${category}`;
+          }
+        } 
 
-      if(status) {
-        if(search!==""||category!=="") {
-          query=`${query}&status=${status}`;  
-        } else {
-          query=`status=${status}`;
-        }
+      if(status!=="") {
+          query=`${query}&status=${status}`;
+          if(title==="" && category==="") {
+            query=`?status=${status}`
+          }  
+       }
 
-      }
-
-      console.log(query);
+      setQuery(query);
 
     }
 
-    console.log(values);
-
   return (
     <div className='bg-white my-8 p-4 text-left'>
-        <FormRow type="text" name="search" placeholderText={"Please enter what to search.."} value={values.search} labelText={"Search by transaction name"} handleChange={onHandleChange} />
+        <FormRow type="text" name="title" placeholderText={"Please enter what to search.."} value={values.title} labelText={"Search by transaction name"} handleChange={onHandleChange} />
         {isIncome && 
           <select name="category" id="category" value={values.category} onChange={onHandleChange} className="w-full py-2 px-2 border-2 rounded">
                 {/* {formvalues.category===""?<option hidden>Select Category..</option>:""} */}

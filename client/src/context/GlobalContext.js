@@ -9,9 +9,8 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR} from "./actions/actions";
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_QUERY} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
-import axios from "axios";
 
 const GlobalContext= createContext();
 
@@ -29,6 +28,7 @@ const initialState= {
     showAlert:false,
     alertClasses:"",
     alertText:"",
+    transactionQuery:"",
     incomes:[],
     expenses:[],
     expenseStats:"",
@@ -106,10 +106,12 @@ const GlobalContextProvider=({children})=>{
         clearLocalStorage();
     }
 
-    const getIncomes=async()=>{
+    const getIncomes=async(query=null)=>{
+        console.log(`/incomes${query}`)
+
         dispatch({type:INCOME_FETCH_BEGIN});
         try {
-            const response= await api.get("/incomes");
+            const response= await api.get(`/incomes${query}`);
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:INCOME_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {
@@ -195,16 +197,20 @@ const GlobalContextProvider=({children})=>{
             dispatch({type:STATS_FETCH_SUCCESS,payload:{statsIncome,statsExpense}}) 
         } catch (error) {
             const {message}= error.response.data;
-            dispatch({type:EXPENSE_FETCH_ERROR,payload:{message}});
+            dispatch({type:STATS_FETCH_ERROR,payload:{message}});
         }
         clearAlert();
+    }
+
+    const setQuery=(query)=>{
+        dispatch({type:SET_TRANSACTION_QUERY,payload:query})
     }
 
 
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,
         loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense,
-        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats}}>
+        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats,setQuery}}>
             {children}
         </GlobalContext.Provider>
     )
