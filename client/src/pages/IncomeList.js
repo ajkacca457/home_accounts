@@ -6,7 +6,7 @@ import CardTags from '../components/CardTags';
 import Filter from '../components/Filter';
 
 const IncomeList = () => {
-  const {isLoading,incomes,getIncomes, totalIncomes, filterStatus,filterCategory}= useGlobalContext();
+  const {isLoading,incomes,getIncomes, filterStatus,filterCategory}= useGlobalContext();
 
   useEffect(()=>{
     getIncomes();

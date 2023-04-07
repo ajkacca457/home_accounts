@@ -34,6 +34,10 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
     }
     }
 
+    if(req.query.title) {
+        delete adjustedQuery.title;
+        adjustedQuery.title={ $regex:req.query.title,$options:"i"};
+    }
 
     let finalQuery= {...adjustedQuery,createdBy:req.user.userId}; 
 

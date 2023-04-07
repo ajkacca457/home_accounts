@@ -1,4 +1,3 @@
-import {FcMoneyTransfer} from "react-icons/fc";
 import {GiProfit,GiMoneyStack,GiPayMoney, GiReceiveMoney,GiShoppingCart} from "react-icons/gi";
 import {TbPigMoney} from "react-icons/tb";
 import {BsBank2, BsHouseUpFill} from "react-icons/bs"
@@ -152,7 +151,7 @@ export const returnStatsCard=(type,item={})=>{
                 id:2,
                 title:"Received",
                 amount:item.received?item.received.amount:0,
-                count:item.Health?item.Health.count:0,
+                count:item.received?item.received.count:0,
                 icon: <GiReceiveMoney/>,
                 bgcolor:"bg-emerald-500"
             }
