@@ -6,11 +6,11 @@ import CardTags from '../components/CardTags';
 import Filter from '../components/Filter';
 
 const IncomeList = () => {
-  const {isLoading,incomes,getIncomes, totalIncomes,transactionQuery}= useGlobalContext();
+  const {isLoading,incomes,getIncomes, totalIncomes}= useGlobalContext();
 
   useEffect(()=>{
-    getIncomes(transactionQuery);
-  },[transactionQuery]);
+    getIncomes();
+  },[]);
 
   if(isLoading) {
     return <Loading/>

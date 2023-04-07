@@ -9,7 +9,7 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_QUERY} from "./actions/actions";
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -28,7 +28,9 @@ const initialState= {
     showAlert:false,
     alertClasses:"",
     alertText:"",
-    transactionQuery:"",
+    filterTitle:"",
+    filterStatus:"all",
+    filterCategory:"all",
     incomes:[],
     expenses:[],
     expenseStats:"",
@@ -106,12 +108,11 @@ const GlobalContextProvider=({children})=>{
         clearLocalStorage();
     }
 
-    const getIncomes=async(query=null)=>{
-        console.log(`/incomes${query}`)
+    const getIncomes=async()=>{
 
         dispatch({type:INCOME_FETCH_BEGIN});
         try {
-            const response= await api.get(`/incomes${query}`);
+            const response= await api.get(`/incomes`);
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:INCOME_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {
@@ -202,15 +203,15 @@ const GlobalContextProvider=({children})=>{
         clearAlert();
     }
 
-    const setQuery=(query)=>{
-        dispatch({type:SET_TRANSACTION_QUERY,payload:query})
+    const setFilter=(name,value)=>{
+        dispatch({type:SET_TRANSACTION_FILTER,payload:{name,value}})
     }
 
 
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,
         loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense,
-        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats,setQuery}}>
+        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats,setFilter}}>
             {children}
         </GlobalContext.Provider>
     )

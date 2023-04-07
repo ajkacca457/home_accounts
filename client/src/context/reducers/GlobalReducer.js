@@ -6,7 +6,7 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR, 
     SET_INCOME_EDIT,SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_QUERY } from "../actions/actions";
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -233,10 +233,22 @@ const GlobalReducer=(state,action)=>{
                 isLoading:true
             }
 
-        case SET_TRANSACTION_QUERY:
+        case SET_TRANSACTION_FILTER:
+            if(action.payload.name==="title") {
+                return {
+                    ...state,filterTitle:action.payload.value
+                }
+            }  
+            
+            if(action.payload.name==="status") {
+                return {
+                    ...state, filterStatus:action.payload.value
+                }
+            }
+    
             return {
                 ...state,
-                transactionQuery:action.payload
+                filterCategory:action.payload.value
             }
 
         default:
