@@ -109,11 +109,17 @@ const GlobalContextProvider=({children})=>{
     }
 
     const getIncomes=async()=>{
-        const {filterStatus,filterCategory}= state;
+        const {filterStatus,filterCategory,filterTitle}= state;
+
+        let url= `/incomes?status=${filterStatus}&category=${filterCategory}`
+
+        if(filterTitle) {
+            url=`${url}&title=${filterTitle}`;
+        }
 
         dispatch({type:INCOME_FETCH_BEGIN});
         try {
-            const response= await api.get(`/incomes?status=${filterStatus}&category=${filterCategory}`);
+            const response= await api.get(url);
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:INCOME_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {

@@ -16,6 +16,7 @@ const Filter = ({isIncome}) => {
 
   return (
     <div className='bg-white my-8 p-4 text-left'>
+      <form>
         <FormRow type="text" name="title" placeholderText={"Please enter what to search.."} value={filterTitle} labelText={"Search by transaction name"} handleChange={onHandleChange}/>
         {isIncome && 
           <select name="category" id="category" value={filterCategory} onChange={onHandleChange} className="w-full py-2 px-2 border-2 rounded">
@@ -48,7 +49,7 @@ const Filter = ({isIncome}) => {
               <option value="due">due</option> 
             </select>
         }
-
+      </form>
     </div>
   )
 }

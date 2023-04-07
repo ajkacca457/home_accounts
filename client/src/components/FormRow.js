@@ -10,7 +10,8 @@ const FormRow = ({type,name,value,labelText,placeholderText,handleChange}) => {
             name={name} 
             type={type}
             value={value} 
-            placeholder={placeholderText} 
+            placeholder={placeholderText}
+            autoFocus="autoFocus" 
             onChange={handleChange}
             />
         </div>
