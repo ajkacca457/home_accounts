@@ -130,9 +130,16 @@ const GlobalContextProvider=({children})=>{
     }
 
     const getExpenses= async()=> {
+        const {filterStatus,filterCategory,filterTitle}= state;
+
+        let url= `/expenses?status=${filterStatus}&category=${filterCategory}`
+
+        if(filterTitle) {
+            url=`${url}&title=${filterTitle}`;
+        }
         dispatch({type:EXPENSE_FETCH_BEGIN});
         try {
-            const response= await api.get("/expenses");
+            const response= await api.get(url);
             const {data,totalItems,numberOfPages}= response.data;
             dispatch({type:EXPENSE_FETCH_SUCCESS,payload:{data,totalItems,numberOfPages}});
         } catch (error) {

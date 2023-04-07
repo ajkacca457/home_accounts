@@ -8,9 +8,10 @@ import { useGlobalContext } from '../context/GlobalContext';
 
 const Filter = ({isIncome}) => {
 
-    const {filterTitle,filterStatus,filterCategory,setFilter}= useGlobalContext();
+    const {filterTitle,filterStatus,filterCategory,setFilter, isLoading}= useGlobalContext();
 
     const onHandleChange=(e)=> {
+      if(isLoading) return;
       setFilter(e.target.name,e.target.value);
     }
 
