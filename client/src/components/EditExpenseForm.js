@@ -49,7 +49,7 @@ const handleChange=(e)=>{
 }
 
   return (
-    <div className='w-9/12 mx-auto bg-white mt-8 rounded p-6'>
+    <div className='w-full md:w-10/12 lg:w-9/12 mx-auto bg-white mt-8 rounded p-6'>
         <h1 className='bg-indigo-300 text-white text-center my-2 py-2 rounded'>Edit Transaction</h1>
         <form onSubmit={handleSubmit}>
             <FormRow type={"text"} name={"title"} value={formvalues.title} labelText={"Title"} placeholderText={"Please enter title"} handleChange={handleChange}  />
