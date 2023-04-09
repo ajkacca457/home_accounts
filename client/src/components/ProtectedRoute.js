@@ -5,14 +5,14 @@ import { Navigate } from 'react-router-dom';
 
 
 const ProtectedRoute = ({children}) => {
- const { user,token,logOutUser }= useGlobalContext();
+ const { user,token,logOutUser}= useGlobalContext();
  if(!user) {
    return <Navigate to="/auth" replace />;
  }
 
 
- //tentative solution
- 
+//tentative solution
+
 if(token) {
   const {exp}=JSON.parse(atob(token.split(".")[1]));
   if(exp*1000<Date.now()){
