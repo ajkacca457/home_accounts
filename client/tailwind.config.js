@@ -8,8 +8,9 @@ module.exports = {
     },
     screens: {
       //screen dosnt work with max width in react
-      'small': '640px',
-      'medium':'1200px'
+      'sm': '640px',
+      'md':'768px',
+      'lg':'1024px'
     },
   extend:{
     maxWidth:{

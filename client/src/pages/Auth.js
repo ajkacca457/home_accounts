@@ -66,7 +66,7 @@ const toggleForm=(e)=>{
 }
 
 return (
-        <div className="w-3/6 mx-auto">
+        <div className="w-full md:w-4/6 lg:w-3/6 mx-auto">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
                 <div className="mb-6 w-full">
                     <NavLink to="/">
