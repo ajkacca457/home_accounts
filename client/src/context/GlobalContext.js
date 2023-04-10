@@ -9,7 +9,8 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER} from "./actions/actions";
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER,
+    CHANGE_PAGE} from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
 const GlobalContext= createContext();
@@ -221,11 +222,15 @@ const GlobalContextProvider=({children})=>{
         dispatch({type:SET_TRANSACTION_FILTER,payload:{name,value}})
     }
 
+    const pageChange=(pageNum)=>{
+        dispatch({type:CHANGE_PAGE,payload:pageNum});
+    }
+
 
     return (
         <GlobalContext.Provider value={{...state,displayAlert,registerUser,
         loginUser, logOutUser, getIncomes,getExpenses, deleteIncome,deleteExpense,
-        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats,setFilter}}>
+        addTransaction, setIncomeEdit, setExpenseEdit, editTransaction,getStats,setFilter,pageChange}}>
             {children}
         </GlobalContext.Provider>
     )

@@ -6,7 +6,7 @@ import { SHOW_ALERT,CLEAR_ALERT,REGISTER_USER_BEGIN,REGISTER_USER_SUCCESS,
     TRANSACTION_ADD_BEGINS,TRANSACTION_ADD_SUCCESS,TRANSACTION_ADD_ERROR, 
     SET_INCOME_EDIT,SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS,EDIT_TRANSACTION_SUCCESS,EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER } from "../actions/actions";
+    STATS_FETCH_BEGINS,STATS_FETCH_SUCCESS,STATS_FETCH_ERROR,SET_TRANSACTION_FILTER, CHANGE_PAGE } from "../actions/actions";
 
 
 const GlobalReducer=(state,action)=>{
@@ -250,7 +250,11 @@ const GlobalReducer=(state,action)=>{
                 ...state,
                 filterCategory:action.payload.value
             }
-
+        case CHANGE_PAGE:
+            return {
+                ...state,page:action.payload
+            }
+         
         default:
             return state
     }
