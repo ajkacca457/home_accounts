@@ -4,13 +4,14 @@ import Loading from "../components/Loading";
 import IncomeCard from '../components/IncomeCard';
 import CardTags from '../components/CardTags';
 import Filter from '../components/Filter';
+import Pagination from '../components/Pagination';
 
 const IncomeList = () => {
-  const {isLoading,incomes,getIncomes, filterStatus,filterCategory,filterTitle,totalIncomes}= useGlobalContext();
+  const {isLoading,incomes,getIncomes, filterStatus,filterCategory,filterTitle,totalIncomes,numberOfIncomePages,page}= useGlobalContext();
 
   useEffect(()=>{
     getIncomes();
-  },[filterStatus,filterCategory,filterTitle]);
+  },[filterStatus,filterCategory,filterTitle,page]);
 
   if(isLoading) {
     return <Loading/>
@@ -35,6 +36,8 @@ const IncomeList = () => {
            <IncomeCard key={item._id} {...item}/> 
         )
       })}
+
+      {totalIncomes>1 && <Pagination buttons={numberOfIncomePages}/>}
 
     </div>
   )
