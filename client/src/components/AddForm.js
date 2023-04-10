@@ -76,8 +76,8 @@ const handleChange=(e)=>{
                 {incomeCategories.map((item,index)=>{
                     return <option value={item} key={index}>{item}</option>
                 })}
-             </select>
-             <label htmlFor="status" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Status</label>
+            </select>
+            <label htmlFor="status" className="block text-gray-700 text-sm font-bold mt-6 mb-2">Status</label>
             <select name="status" id="status" value={formvalues.status} onChange={handleChange} className="w-full py-2 px-2 border-2 rounded ">
                 {formvalues.status===""?<option hidden>Select Status..</option>:""}
                 <option value="received">received</option>

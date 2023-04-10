@@ -55,8 +55,8 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
         query=query.sort("-createdAt");
     }
 
-    let page= parseInt(req.query.page||1);
-    let limit= parseInt(req.query.limit||10);
+    let page= Number(req.query.page)||1;
+    let limit= Number(req.query.limit)||10;
     let skip= (page-1)*limit;
 
     query= query.skip(skip).limit(limit);

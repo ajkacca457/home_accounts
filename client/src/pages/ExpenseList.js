@@ -4,9 +4,10 @@ import Loading from '../components/Loading';
 import ExpenseCard from '../components/ExpenseCard';
 import CardTags from '../components/CardTags';
 import Filter from '../components/Filter';
+import Pagination from '../components/Pagination';
 
 const ExpenseList = () => {
-  const {isLoading,getExpenses,expenses,totalExpenses,filterStatus,filterCategory,filterTitle}= useGlobalContext();
+  const {isLoading,getExpenses,expenses,totalExpenses,filterStatus,filterCategory,filterTitle,numberOfExpensePages}= useGlobalContext();
   useEffect(()=>{
     getExpenses()
   },[filterStatus,filterCategory,filterTitle])
@@ -33,7 +34,7 @@ const ExpenseList = () => {
             <ExpenseCard key={item._id} {...item}/>
         )
       })}
-
+      {numberOfExpensePages>1 && <Pagination buttons={numberOfExpensePages}/> }
     </div>
   )
 }
