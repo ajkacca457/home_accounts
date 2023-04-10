@@ -6,7 +6,7 @@ import CardTags from '../components/CardTags';
 import Filter from '../components/Filter';
 
 const IncomeList = () => {
-  const {isLoading,incomes,getIncomes, filterStatus,filterCategory,filterTitle}= useGlobalContext();
+  const {isLoading,incomes,getIncomes, filterStatus,filterCategory,filterTitle,totalIncomes}= useGlobalContext();
 
   useEffect(()=>{
     getIncomes();
@@ -29,7 +29,7 @@ const IncomeList = () => {
     <div className='mt-10'>
       <Filter isIncome={true}/>
 
-      <CardTags info={{cardClass:"bg-indigo-500",totalIncomes:incomes.length}}/>
+      <CardTags info={{cardClass:"bg-indigo-500",totalIncomes}}/>
       {incomes && incomes.map((item)=>{
         return (
            <IncomeCard key={item._id} {...item}/> 
