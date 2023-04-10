@@ -63,7 +63,7 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
 
     const items= await query;
 
-    let totalItems=await model.countDocuments({createdBy:req.user.userId});
+    let totalItems=await model.countDocuments(finalQuery);
     let numberOfPages= Math.ceil(totalItems/limit);
 
     
