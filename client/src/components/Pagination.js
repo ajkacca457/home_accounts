@@ -9,11 +9,20 @@ const Pagination = ({buttons}) => {
     })
 
     const prevPage=()=>{
-      console.log("previous page")
+      let newPage= currentPage-1;
+      if(newPage<1) {
+        newPage=buttons;
+      }
+      pageChange(newPage);
     }
 
     const nextPage= ()=>{
-      console.log("next page")
+      let newPage=currentPage+1;
+      if(currentPage>=buttons) {
+        newPage=1;
+      }
+      console.log(newPage);
+      pageChange(newPage);
     }
 
     return (

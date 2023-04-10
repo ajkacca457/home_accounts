@@ -7,10 +7,10 @@ import Filter from '../components/Filter';
 import Pagination from '../components/Pagination';
 
 const ExpenseList = () => {
-  const {isLoading,getExpenses,expenses,totalExpenses,filterStatus,filterCategory,filterTitle,numberOfExpensePages}= useGlobalContext();
+  const {isLoading,getExpenses,expenses,totalExpenses,filterStatus,filterCategory,filterTitle,numberOfExpensePages,page}= useGlobalContext();
   useEffect(()=>{
     getExpenses()
-  },[filterStatus,filterCategory,filterTitle])
+  },[filterStatus,filterCategory,filterTitle,page])
 
   if(isLoading) {
     return <Loading/>

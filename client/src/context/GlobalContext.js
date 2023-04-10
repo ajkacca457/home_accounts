@@ -131,9 +131,9 @@ const GlobalContextProvider=({children})=>{
     }
 
     const getExpenses= async()=> {
-        const {filterStatus,filterCategory,filterTitle}= state;
+        const {filterStatus,filterCategory,filterTitle,page}= state;
 
-        let url= `/expenses?status=${filterStatus}&category=${filterCategory}`
+        let url= `/expenses?page=${page}&status=${filterStatus}&category=${filterCategory}`
 
         if(filterTitle) {
             url=`${url}&title=${filterTitle}`;
