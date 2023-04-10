@@ -12,8 +12,6 @@ const handleNav=()=>{
     setShowNav(!showNav);
 }
 
-console.log(showNav);
-
 const {logOutUser}= useGlobalContext();
 
   return (

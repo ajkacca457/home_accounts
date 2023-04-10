@@ -7,8 +7,7 @@ const Pagination = ({buttons}) => {
     const buttonList= Array.from({length:buttons},(_,index)=>{
       return index+1;
     })
-    console.log(buttonList);
-
+    
     const prevPage=()=>{
       console.log("previous page")
     }
