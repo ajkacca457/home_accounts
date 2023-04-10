@@ -63,6 +63,7 @@ const AdvancedResult=(model)=>async (req,res,next)=>{
 
     const items= await query;
 
+    // use query along with req.user to get the actual transaction number
     let totalItems=await model.countDocuments(finalQuery);
     let numberOfPages= Math.ceil(totalItems/limit);
 
