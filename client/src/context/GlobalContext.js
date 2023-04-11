@@ -44,7 +44,8 @@ const initialState = {
     totalExpenses: 0,
     numberOfIncomePages: 1,
     numberOfExpensePages: 1,
-    page: 1
+    incomepage: 1,
+    expensepage: 1,
 };
 
 const GlobalContextProvider = ({ children }) => {
@@ -112,9 +113,9 @@ const GlobalContextProvider = ({ children }) => {
     };
 
     const getIncomes = async () => {
-        const { filterStatus, filterCategory, filterTitle, page } = state;
+        const { filterStatus, filterCategory, filterTitle, incomepage } = state;
 
-        let url = `/incomes?page=${page}&status=${filterStatus}&category=${filterCategory}`;
+        let url = `/incomes?page=${incomepage}&status=${filterStatus}&category=${filterCategory}`;
 
         if (filterTitle) {
             url = `${url}&title=${filterTitle}`;
@@ -133,9 +134,9 @@ const GlobalContextProvider = ({ children }) => {
     };
 
     const getExpenses = async () => {
-        const { filterStatus, filterCategory, filterTitle, page } = state;
+        const { filterStatus, filterCategory, filterTitle, expensepage } = state;
 
-        let url = `/expenses?page=${page}&status=${filterStatus}&category=${filterCategory}`;
+        let url = `/expenses?page=${expensepage}&status=${filterStatus}&category=${filterCategory}`;
 
         if (filterTitle) {
             url = `${url}&title=${filterTitle}`;
@@ -224,8 +225,8 @@ const GlobalContextProvider = ({ children }) => {
         dispatch({ type: SET_TRANSACTION_FILTER, payload: { name, value } });
     };
 
-    const pageChange = (pageNum) => {
-        dispatch({ type: CHANGE_PAGE, payload: pageNum });
+    const pageChange = (name, pageNum) => {
+        dispatch({ type: CHANGE_PAGE, payload: { name, pageNum } });
     };
 
 

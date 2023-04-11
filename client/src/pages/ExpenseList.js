@@ -7,36 +7,36 @@ import Filter from '../components/Filter';
 import Pagination from '../components/Pagination';
 
 const ExpenseList = () => {
-  const {isLoading,getExpenses,expenses,totalExpenses,filterStatus,filterCategory,filterTitle,numberOfExpensePages,page}= useGlobalContext();
-  useEffect(()=>{
-    getExpenses()
-  },[filterStatus,filterCategory,filterTitle,page])
+  const { isLoading, getExpenses, expenses, totalExpenses, filterStatus, filterCategory, filterTitle, numberOfExpensePages, expensepage } = useGlobalContext();
+  useEffect(() => {
+    getExpenses();
+  }, [filterStatus, filterCategory, filterTitle, expensepage]);
 
-  if(isLoading) {
-    return <Loading/>
+  if (isLoading) {
+    return <Loading />;
   }
-  
-  if(expenses.length===0) {
-    return  <div>
-              <Filter isIncome={false}/>
-              <div className='bg-white my-8 p-4 text-center'>
-                <h1>No transactions available..</h1>
-              </div>
-            </div>
+
+  if (expenses.length === 0) {
+    return <div>
+      <Filter isIncome={false} />
+      <div className='bg-white my-8 p-4 text-center'>
+        <h1>No transactions available..</h1>
+      </div>
+    </div>;
   }
 
   return (
     <div className='mt-10'>
-      <Filter isIncome={false}/>
-      <CardTags  info={{cardClass:"bg-red-500",totalExpenses}}/>
-      {expenses && expenses.map((item)=>{
+      <Filter isIncome={false} />
+      <CardTags info={{ cardClass: "bg-red-500", totalExpenses }} />
+      {expenses && expenses.map((item) => {
         return (
-            <ExpenseCard key={item._id} {...item}/>
-        )
+          <ExpenseCard key={item._id} {...item} />
+        );
       })}
-      {numberOfExpensePages>1 && <Pagination buttons={numberOfExpensePages}/> }
+      {numberOfExpensePages > 1 && <Pagination buttons={numberOfExpensePages} name="expense" currentPage={expensepage} />}
     </div>
-  )
-}
+  );
+};
 
-export default ExpenseList
+export default ExpenseList;
