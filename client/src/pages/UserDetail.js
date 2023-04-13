@@ -3,8 +3,6 @@ import { useGlobalContext } from '../context/GlobalContext';
 const UserDetail = () => {
 
     const { user } = useGlobalContext();
-    console.log(user);
-
     return (
         <div>
             {user &&
