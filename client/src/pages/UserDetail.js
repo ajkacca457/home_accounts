@@ -1,8 +1,20 @@
 import React from 'react';
-
+import { useGlobalContext } from '../context/GlobalContext';
 const UserDetail = () => {
+
+    const { user } = useGlobalContext();
+    console.log(user);
+
     return (
-        <div>UserDetail</div>
+        <div>
+            {user &&
+                <div>
+                    <h1>{user.firstname}</h1>
+                    <h1>{user.lastname}</h1>
+                    <p>{user.email}</p>
+                    <p>{user.location}</p>
+                </div>}
+        </div>
     );
 };
 
