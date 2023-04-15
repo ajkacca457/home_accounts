@@ -3,6 +3,8 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { FaUserCircle } from "react-icons/fa";
 import FormRow from '../components/FormRow';
 import {MdArrowBack} from "react-icons/md";
+import Loading from '../components/Loading';
+
 const UserDetail = () => {
 
     const { user, isLoading, displayAlert,makeUpdateUser } = useGlobalContext();
@@ -24,6 +26,11 @@ const UserDetail = () => {
         makeUpdateUser(updateUser);
         setIsEdit(!isEdit);
     }
+
+
+    if (isLoading) {
+        return <Loading />;
+      }
 
 
     if (isEdit) {
