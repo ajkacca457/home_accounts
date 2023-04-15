@@ -14,10 +14,6 @@ const protectRoute=AsyncHandler(async(req,res,next)=>{
         return next(new CustomError("not authorized to access the data",StatusCodes.UNAUTHORIZED))
     }
 
-    // if(jwt.decode(token).exp<Date.now()) {
-    //     return next (new CustomError("token expired",StatusCodes.UNAUTHORIZED));
-    // };
-
     try {
         const decodedId= jwt.verify(token,process.env.JWT_SECRET);
         req.user= {userId:decodedId.userId};

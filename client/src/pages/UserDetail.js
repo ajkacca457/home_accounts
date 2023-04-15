@@ -9,7 +9,10 @@ const UserDetail = () => {
 
     const { user, isLoading, displayAlert,makeUpdateUser } = useGlobalContext();
     const [isEdit, setIsEdit] = useState(false);
-    const [updateUser,setUpdateUser]= useState(user);
+    const [updateUser,setUpdateUser]= useState({firstname:user.firstname||"",
+                                                lastname:user.lastname||"",
+                                                email:user.email||"",
+                                                location:user.location||"unknown"});
 
     const handleChange=(e)=>{
         setUpdateUser({...updateUser,[e.target.name]:e.target.value});
