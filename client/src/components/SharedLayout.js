@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import AccountLogo from "../assets/account_logo.svg";
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
@@ -9,7 +9,16 @@ import { useGlobalContext } from '../context/GlobalContext';
 
 const SharedLayout = () => {
 
-  const {showAlert}= useGlobalContext(); 
+  const {showAlert, user}= useGlobalContext(); 
+
+  const [showWelcome, setShowWelcome]=useState(false);
+
+  useEffect(()=>{
+    setShowWelcome(true);
+    setTimeout(()=>{
+      setShowWelcome(false);
+    },3000)
+  },[])
 
   return (
     <div>
@@ -18,7 +27,7 @@ const SharedLayout = () => {
             <Navigation/>
         </div>
         <MobileNavigation/>
-
+        {user && showWelcome && <h1 className='text-center text-2xl'>Welcome,{" "}{user.firstname}</h1>}
         {showAlert && <Alert/>}
         <Outlet/>    
     </div>
