@@ -75,8 +75,12 @@ const GlobalContextProvider = ({ children }) => {
         localStorage.removeItem("expense");
     };
 
+    const logOutUser = () => {
+        dispatch({ type: LOGOUT_USER });
+        clearLocalStorage();
+    };
 
-    const api = apiFetch(state.token);
+    const api = apiFetch(state.token,logOutUser);
 
 
     const registerUser = async (currentUser) => {
@@ -105,11 +109,6 @@ const GlobalContextProvider = ({ children }) => {
             dispatch({ type: LOGIN_USER_ERROR, payload: { message } });
             clearAlert();
         }
-    };
-
-    const logOutUser = () => {
-        dispatch({ type: LOGOUT_USER });
-        clearLocalStorage();
     };
 
     const getIncomes = async () => {

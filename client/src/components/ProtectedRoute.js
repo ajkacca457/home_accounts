@@ -11,14 +11,14 @@ const ProtectedRoute = ({children}) => {
  }
 
 
-//tentative solution
+// //tentative solution
 
-if(token) {
-  const {exp}=JSON.parse(atob(token.split(".")[1]));
-  if(exp*1000<Date.now()){
-    logOutUser();
-  }
-}
+// if(token) {
+//   const {exp}=JSON.parse(atob(token.split(".")[1]));
+//   if(exp*1000<Date.now()){
+//     logOutUser();
+//   }
+// }
 
   return children
 }
