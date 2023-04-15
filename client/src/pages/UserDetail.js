@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from '../context/GlobalContext';
 import { FaUserCircle } from "react-icons/fa";
 const UserDetail = () => {
 
     const { user } = useGlobalContext();
-    const [isEdit, setIsEdit] = React.useState(false);
+    const [isEdit, setIsEdit] = useState(false);
 
     if (isEdit) {
         return (<h1>Edit profile</h1>);
