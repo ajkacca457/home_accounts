@@ -9,11 +9,7 @@ import { useGlobalContext } from '../context/GlobalContext';
 
 const SharedLayout = () => {
 
-  const {showAlert, displayAlert, user}= useGlobalContext();
-
-  useEffect(()=>{
-    displayAlert("bg-green-400 text-white",`Welcome ${user.firstname}`);  
-  },[user])  
+  const {showAlert}= useGlobalContext(); 
 
   return (
     <div>

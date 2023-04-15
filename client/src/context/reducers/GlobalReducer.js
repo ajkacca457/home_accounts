@@ -264,7 +264,7 @@ const GlobalReducer = (state, action) => {
                     ...state, expensepage: action.payload.pageNum
                 };
             }
-        
+
         case UPDATE_USER_BEGINS:
             return {
                 ...state,
@@ -275,6 +275,7 @@ const GlobalReducer = (state, action) => {
             return {
                 ...state,
                 isLoading: false,
+                showAlert:true,
                 user:action.payload.user,
                 token:action.payload.token,
                 alertClasses: "bg-green-400 text-white",
