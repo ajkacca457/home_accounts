@@ -7,7 +7,8 @@ import {
     TRANSACTION_ADD_BEGINS, TRANSACTION_ADD_SUCCESS, TRANSACTION_ADD_ERROR,
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS, EDIT_TRANSACTION_SUCCESS, EDIT_TRANSACTION_ERROR,
-    STATS_FETCH_BEGINS, STATS_FETCH_SUCCESS, STATS_FETCH_ERROR, SET_TRANSACTION_FILTER, CHANGE_PAGE
+    STATS_FETCH_BEGINS, STATS_FETCH_SUCCESS, STATS_FETCH_ERROR, SET_TRANSACTION_FILTER, CHANGE_PAGE,
+    UPDATE_USER_BEGINS,UPDATE_USER_SUCCESS,UPDATE_USER_ERROR
 } from "../actions/actions";
 
 
@@ -263,6 +264,31 @@ const GlobalReducer = (state, action) => {
                     ...state, expensepage: action.payload.pageNum
                 };
             }
+        
+        case UPDATE_USER_BEGINS:
+            return {
+                ...state,
+                isLoading: true,
+                showAlert: false
+            };
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                user:action.payload.user,
+                token:action.payload.token,
+                alertClasses: "bg-green-400 text-white",
+                alertText: "User Updated"
+            };
+        case UPDATE_USER_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                showAlert: true,
+                alertClasses: "bg-red-400 text-white",
+                alertText: action.payload.message
+            };
+
         default:
             return state;
     }

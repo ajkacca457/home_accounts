@@ -11,7 +11,7 @@ import {
     SET_INCOME_EDIT, SET_EXPENSE_EDIT,
     EDIT_TRANSACTION_BEGINS, EDIT_TRANSACTION_SUCCESS, EDIT_TRANSACTION_ERROR,
     STATS_FETCH_BEGINS, STATS_FETCH_SUCCESS, STATS_FETCH_ERROR, SET_TRANSACTION_FILTER,
-    CHANGE_PAGE
+    CHANGE_PAGE, UPDATE_USER_BEGINS,UPDATE_USER_SUCCESS,UPDATE_USER_ERROR
 } from "./actions/actions";
 import { apiFetch } from "../utilites/axiosConfig";
 
@@ -229,12 +229,27 @@ const GlobalContextProvider = ({ children }) => {
         dispatch({ type: CHANGE_PAGE, payload: { name, pageNum } });
     };
 
+    const makeUpdateUser=async(newUserDetail)=>{
+        dispatch({type:UPDATE_USER_BEGINS});
+        try {
+            const response= await api.patch("/auth/updateuser", newUserDetail);
+            const {user,token}=response.data;
+            dispatch({ type: UPDATE_USER_SUCCESS, payload: { user, token} });
+            addToLocalStorage(user, token);        
+            } 
+            catch (error) {
+            const { message } = error.response.data;
+            dispatch({ type: UPDATE_USER_ERROR, payload: { message } });
+        }
+        clearAlert();
+    }
+
 
     return (
         <GlobalContext.Provider value={{
             ...state, displayAlert, registerUser,
             loginUser, logOutUser, getIncomes, getExpenses, deleteIncome, deleteExpense,
-            addTransaction, setIncomeEdit, setExpenseEdit, editTransaction, getStats, setFilter, pageChange
+            addTransaction, setIncomeEdit, setExpenseEdit, editTransaction, getStats, setFilter, pageChange,makeUpdateUser
         }}>
             {children}
         </GlobalContext.Provider>

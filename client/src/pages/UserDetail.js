@@ -5,7 +5,7 @@ import FormRow from '../components/FormRow';
 import {MdArrowBack} from "react-icons/md";
 const UserDetail = () => {
 
-    const { user, isLoading } = useGlobalContext();
+    const { user, isLoading, displayAlert,makeUpdateUser } = useGlobalContext();
     const [isEdit, setIsEdit] = useState(false);
     const [updateUser,setUpdateUser]= useState(user);
 
@@ -15,7 +15,14 @@ const UserDetail = () => {
 
     const userUpdate=(e)=>{
         e.preventDefault();
-        console.log(updateUser);
+        const {firstname,lastname,email,location}= updateUser;
+
+        if(firstname===""||lastname===""||email===""||location==="") {
+            displayAlert("bg-red-400 text-white","Please provide all the information..")
+        }
+
+        makeUpdateUser(updateUser);
+        setIsEdit(!isEdit);
     }
 
 
@@ -26,7 +33,7 @@ const UserDetail = () => {
             <FormRow type="text" name="firstname" value={updateUser.firstname} labelText="Firstname" placeholderText="Enter your first name" handleChange={handleChange}/>
             <FormRow type="text" name="lastname" value={updateUser.lastname} labelText="Lastname" placeholderText="Enter your last name" handleChange={handleChange}/>
             <FormRow type="email" name="email" value={updateUser.email} labelText="Email" placeholderText="Enter email address" handleChange={handleChange}/>
-            <FormRow type="text" name="location" value={updateUser.location} labelText="Lastname" placeholderText="Enter your location" handleChange={handleChange}/>
+            <FormRow type="text" name="location" value={updateUser.location} labelText="Location" placeholderText="Enter your location" handleChange={handleChange}/>
             <button className="btn-primary disabled:opacity-75 disabled:bg-slate-400 my-6" type="submit" disabled={isLoading} >Submit</button>
             <button className='btn-underline flex items-center gap-x-[5px]' onClick={(e)=>{setIsEdit(!isEdit)}}><MdArrowBack/> Back to profile</button>
         </form>  );
