@@ -5,13 +5,13 @@ This is a web app that allows users to track their financial activities. Any use
 [Api Documentation link](https://documenter.getpostman.com/view/14864737/2s93XyTi3i)
 
 ## Project Display
-![screenshot](./images/image1.PNG)
-![screenshot](./images/image2.PNG)
-![screenshot](./images/image3.PNG)
-![screenshot](./images/image4.PNG)
-![screenshot](./images/image5.PNG)
-![screenshot](./images/image6.PNG)
-![screenshot](./images/image7.PNG)
+![screenshot](./images/image1.png)
+![screenshot](./images/image2.png)
+![screenshot](./images/image3.png)
+![screenshot](./images/image4.png)
+![screenshot](./images/image5.png)
+![screenshot](./images/image6.png)
+![screenshot](./images/image7.png)
 
 ## Live Demo
 
