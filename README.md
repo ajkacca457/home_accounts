@@ -1,5 +1,5 @@
 # home-accounts
-
+This is a web app that allows users to track their financial activities. Any user can create and account and start tracking their money. This is very user friendly and easy to use. There is only one form with multiple option to enter any transaction. The app makes graphical analysis of all user transactions and it is easier for users to see the status of their finances in statistic page. The aim of this app is to give users a simple interface that is easy to use.   
 
 ## Back-end link and Documentation
 [Github repository and Documentation link](https://github.com/ajkacca457/course-tracker_final_capstone_api)
@@ -19,15 +19,14 @@
 
 ## Built With
 
-- Html
-- Css
-- Vanila Js
-- Atom text editor
-- React Js
-- redux
-- react-redux
-- rails api
-- Npm
+- Express
+- MongoDB
+- Mongoose
+- Node JS 
+- React
+- React Icons
+- Fushion Charts
+- Tailwind 
 
 # Getting Started
 
