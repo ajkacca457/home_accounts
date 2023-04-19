@@ -13,10 +13,6 @@ This is a web app that allows users to track their financial activities. Any use
 ![screenshot](./images/image6.png)
 ![screenshot](./images/image7.png)
 
-## Live Demo
-
-[Course_Tracker](https://course-tracker-front.netlify.app/login)
-
 ## Built With
 
 - Express
@@ -30,18 +26,28 @@ This is a web app that allows users to track their financial activities. Any use
 
 # Getting Started
 
-To get a local copy of the repository please run the following commands on your terminal:
+### Requirements
 
-```
-$ cd <folder>
-```
+- Own mongodb account to run the app with valid database.
+
+To get a local copy of the repository please run the following commands on your terminal:
 
 ```bash
 
-$ git clone `https://github.com/ajkacca457/course-tracker_finalcapstone.git`
-$ cd react_capstone_tvshowcatalouge
-$ Run `npm install` to install the necessary modules
-$ Run `npm run start` to open app in localhost.
+$ git clone `https://github.com/ajkacca457/home_accounts.git`
+$ create config.env file in env folder
+$ Add the following variables in config.env file: 
+    - PORT (preferablly 5000 for backend server)
+    - MONGO_URI (own connection string that for mongodb)
+    - JWT_SECRET (it could be anything but it is preferable to use encryption key generator to get a good key)
+    - JWT_EXPIRE (any range from 1h to 1y)
+$ cd home_accounts 
+$ Run `npm install` to install the necessary modules for backend
+$ Run `npm start` to start backend server.
+$ cd client
+$ Run `npm install` to install the necessary modules for front end
+$ Run `npm run start` to start frontend server.
+$ Start using and modifying the app.
 
 ```
 
@@ -50,16 +56,27 @@ $ Run `npm run start` to open app in localhost.
 To run test in your terminal:
 
 ```bash
-$ Run `npm run test` to run test
-$ enter `a` to run all the test in the app.
-
+$ No tests available for the backend codebase.
+$ Run `react-scripts test` to run basic tests for front-end
 ```
+
+# Limitations
+
+- Right now the app doenst have a live link.
+- Time based transactions filter is yet to be added.
+- Time based stats filtering is yet to be added.
+
+# Future development pipeline
+
+- Adding timeline based filtering to both transactions and statistics data fetch. 
+- Adding option for user to generate pdf report/sharable link.
+
 # Authors
 
 👤 **Avijit Karmaker**
 
-- Github: [@Avijit](https://github.com/ajkacca457)
-- Linkedin: [@Avijit](https://www.linkedin.com/in/avijit-karmaker-8738a54)
+- [LinkedIn](https://www.linkedin.com/in/avijit-karmaker-8738a54)
+- [Portfolio](https://avijitkarmaker.netlify.app/)
 
 ## 🤝 Contributing
 
